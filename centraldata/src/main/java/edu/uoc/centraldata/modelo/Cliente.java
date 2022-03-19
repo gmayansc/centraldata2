@@ -12,6 +12,8 @@ public abstract class Cliente {
 	public void setNIF(String nIF) {
 		NIF = nIF;
 	}
+        
+        //CAMBIO PARA PRUEBAS
 
 	public String getNombreCliente() {
 		return nombreCliente;
