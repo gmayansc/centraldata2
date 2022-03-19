@@ -14,6 +14,8 @@ public abstract class Cliente {
 	}
         
         //CAMBIO PARA PRUEBAS
+        
+        //NOS VA A SALIR UN PROYECTO ESPECTACULAR ;)
 
 	public String getNombreCliente() {
 		return nombreCliente;
