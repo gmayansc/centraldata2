@@ -2,15 +2,15 @@ package edu.uoc.centraldata.modelo;
 
 public class Articulo {
 	
-    public int Codigo;
+    public String Codigo;
     public String Descripcion;
-    public float Precio;
-    public float GastosEnvio;
+    public double Precio;
+    public double GastosEnvio;
     public int Tiempo;
     
     public Articulo(){};
 
-    public Articulo(int Codigo, String Descripcion, float Precio, float GastosEnvio, int Tiempo) {
+    public Articulo(String Codigo, String Descripcion, double Precio, double GastosEnvio, int Tiempo) {
         this.Codigo = Codigo;
         this.Descripcion = Descripcion;
         this.Precio = Precio;
@@ -18,11 +18,11 @@ public class Articulo {
         this.Tiempo = Tiempo;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return Codigo;
     }
 
-    public void setCodigo(int Codigo) {
+    public void setCodigo(String Codigo) {
         this.Codigo = Codigo;
     }
 
@@ -34,7 +34,7 @@ public class Articulo {
         this.Descripcion = Descripcion;
     }
 
-    public float getPrecio() {
+    public double getPrecio() {
         return Precio;
     }
 
@@ -42,7 +42,7 @@ public class Articulo {
         this.Precio = Precio;
     }
 
-    public float getGastosEnvio() {
+    public double getGastosEnvio() {
         return GastosEnvio;
     }
 

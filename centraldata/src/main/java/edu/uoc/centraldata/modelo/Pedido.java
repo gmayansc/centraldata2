@@ -1,19 +1,20 @@
 package edu.uoc.centraldata.modelo;
 
-import java.time.LocalDate;
+import java.sql.Time;
+import java.util.Date;
 
 public class Pedido {
     
-    public int Numero;
-    public Cliente Cliente;
-    public Articulo Articulo;
+    public String Numero;
+    public String Cliente;
+    public String Articulo;
     public int Unidades;
-    public LocalDate Fecha;
-    public LocalDate Hora;
-    public float PrecioFinal;
+    public String Fecha;
+    public String Hora;
+    public double PrecioFinal;
     public boolean Envio;
 
-    public Pedido(int Numero, Cliente Cliente, Articulo Articulo, int Unidades, LocalDate Fecha, LocalDate Hora, float PrecioFinal, boolean Envio) {
+    public Pedido(String Numero, String Cliente, String Articulo, int Unidades, String Fecha, String Hora, double PrecioFinal, boolean Envio) {
         this.Numero = Numero;
         this.Cliente = Cliente;
         this.Articulo = Articulo;
@@ -24,27 +25,27 @@ public class Pedido {
         this.Envio = Envio;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return Numero;
     }
 
-    public void setNumero(int Numero) {
+    public void setNumero(String Numero) {
         this.Numero = Numero;
     }
 
-    public Cliente getCliente() {
+    public String getCliente() {
         return Cliente;
     }
 
-    public void setCliente(Cliente Cliente) {
+    public void setCliente(String Cliente) {
         this.Cliente = Cliente;
     }
 
-    public Articulo getArticulo() {
+    public String getArticulo() {
         return Articulo;
     }
 
-    public void setArticulo(Articulo Articulo) {
+    public void setArticulo(String Articulo) {
         this.Articulo = Articulo;
     }
 
@@ -56,27 +57,27 @@ public class Pedido {
         this.Unidades = Unidades;
     }
 
-    public LocalDate getFecha() {
+    public String getFecha() {
         return Fecha;
     }
 
-    public void setFecha(LocalDate Fecha) {
+    public void setFecha(String Fecha) {
         this.Fecha = Fecha;
     }
 
-    public LocalDate getHora() {
+    public String getHora() {
         return Hora;
     }
 
-    public void setHora(LocalDate Hora) {
+    public void setHora(String Hora) {
         this.Hora = Hora;
     }
 
-    public float getPrecioFinal() {
+    public double getPrecioFinal() {
         return PrecioFinal;
     }
 
-    public void setPrecioFinal(float PrecioFinal) {
+    public void setPrecioFinal(double PrecioFinal) {
         this.PrecioFinal = PrecioFinal;
     }
 
@@ -87,14 +88,14 @@ public class Pedido {
     public void setEnvio(boolean Envio) {
         this.Envio = Envio;
     }
+    
+        boolean getEnvio() {
+        throw new UnsupportedOperationException("");
+    }
 
     @Override
     public String toString() {
         return "Pedido{" + "Numero=" + Numero + ", Cliente=" + Cliente + ", Articulo=" + Articulo + ", Unidades=" + Unidades + ", Fecha=" + Fecha + ", Hora=" + Hora + ", PrecioFinal=" + PrecioFinal + ", Envio=" + Envio + '}';
     }
-    
-    //public boolean pedidoEnviado();
-    
-    //public float precioEnvio();
     
 }

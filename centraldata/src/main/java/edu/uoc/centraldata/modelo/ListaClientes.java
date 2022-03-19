@@ -9,11 +9,11 @@ public class ListaClientes<T> extends ListaDatos<Cliente> {
     public ArrayList<T> listaCliente;
     
     private void inicializarValores() {
-        listaCliente.add((T) new Cliente("José Luis García García", "Calle Guay 9 4A, Barcelona, 08001", "12345678B", "pepeluis@uoc.edu",false));   
+        listaCliente.add((T) new Cliente("José Luis García García", "Calle Guay 9 4A, Barcelona, 08001", "12345678B", "pepeluis@gmail.com",false));   
         listaCliente.add((T) new Cliente("Mariano Rajoy Cantalapiedra", "Calle Lago 13 1A, Mendilorri", "87654321A", "marianito@gmail.com",true));
     }
 
-    public boolean comprobarEmail(String Email) {
+    public boolean existeCliente(String Email) {
         boolean bol = false;
         for (int i = 0; i < listaCliente.size(); i++) {
             Cliente = (edu.uoc.centraldata.modelo.Cliente) listaCliente.get(i);
@@ -25,34 +25,35 @@ public class ListaClientes<T> extends ListaDatos<Cliente> {
         }
         return bol;
     }
-
-    public void agregarCliente(Cliente cliente) {
-        if (comprobarEmail(Cliente.getEmail()) == true) {
-            listaCliente.add((T)Cliente);
-            System.out.print("El Cliente ha sido Creado");
-        } else {
-            System.out.print("Este Cliente ya existe");
-        }
-
-    }
-
-    public void eliminarCliente(Cliente cliente) {
-        if (comprobarEmail(Cliente.getEmail()) == true) {
-            listaCliente.remove((T) Cliente);
-            System.out.print("El Cliente ha sido Eliminado");
-        } else {
-            System.out.print("Este Cliente no existe");
-        }
-
+    
+    public boolean existeCliente(Cliente Cliente) {
+        throw new UnsupportedOperationException(""); 
     }
     
-    public void listarClientes() {
-        if (comprobarEmail(Cliente.getEmail()) == true) {
-            System.out.println("Listado de Clientes (" + this.Cliente.getEmail() + "):");
+    public void agregarCliente(Cliente Cliente) {
+        if (!this.existeCliente(Cliente)) {
+            this.listaCliente.add((T) Cliente);
+            System.out.println("El Cliente ha sido Creado");
+        } else {
+            System.out.println("Este Cliente ya existe");
+        }
+    }
+    
+    public void eliminarCliente(Cliente Cliente) {
+        if (existeCliente(Cliente.getEmail()) == true) {
+            this.listaCliente.remove((T) Cliente);
+            System.out.println("El Cliente ha sido Eliminado");
         } else {
             System.out.println("No existe el Cliente");
         }
-        
+    }
+     
+    public void listarClientes(Cliente Cliente) {
+        if (existeCliente(Cliente.getEmail()) == true) {
+            System.out.println("Listado de Clientes (" + this.Cliente.getEmail() + "):");
+        } else {
+            System.out.println("No existe el Cliente");
+        }    
     }
     
     public boolean comprobarTipo(boolean Tipo) {
@@ -68,8 +69,7 @@ public class ListaClientes<T> extends ListaDatos<Cliente> {
             System.out.println("Listado de Clientes Estandard (" + this.Cliente.getEmail() + "):");
         } else {
             System.out.println("No existe el Cliente");
-        }
-        
+        }  
     }
     
     public void listarClientesPremium() {
@@ -77,8 +77,7 @@ public class ListaClientes<T> extends ListaDatos<Cliente> {
             System.out.println("Listado de Clientes Premium (" + this.Cliente.getEmail() + "):");
         } else {
             System.out.println("No existe el Cliente");
-        }
-        
+        }  
     }
     
 }
