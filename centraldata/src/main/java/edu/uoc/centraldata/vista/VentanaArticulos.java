@@ -35,10 +35,7 @@ public class VentanaArticulos extends VentanaMenu{
             default:
                 break;
         };
-        
 
-    
-    
     }
     
     public static void crearArticulo(){
