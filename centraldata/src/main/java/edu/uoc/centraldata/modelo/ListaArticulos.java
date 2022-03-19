@@ -1,5 +1,5 @@
-package centraldata.modelo;
+package edu.uoc.centraldata.modelo;
 
-public class ListaArticulos extends Lista <Articulo>{
+public class ListaArticulos<T> extends ListaDatos <Articulo>{
 
 }

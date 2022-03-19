@@ -1,5 +1,5 @@
-package centraldata.modelo;
+package edu.uoc.centraldata.modelo;
 
-public class ListaPedidos extends Lista<Pedido>{
+public class ListaPedidos extends ListaDatos<Pedido>{
 
 }

@@ -1,40 +1,64 @@
-package centraldata.modelo;
+package edu.uoc.centraldata.modelo;
 
 public class Articulo {
-
 	
-	private String codigoArticulo;
-	private String descArticulo;
-	private String precioArt;
-	
-	public Articulo(String codigoArticulo, String descArticulo, String precioArt) {
-		this.codigoArticulo = codigoArticulo;
-		this.descArticulo = descArticulo;
-		this.precioArt = precioArt;
-	}
+    public int Codigo;
+    public String Descripcion;
+    public float Precio;
+    public float GastosEnvio;
+    public int Tiempo;
 
-	public String getCodigoArticulo() {
-		return codigoArticulo;
-	}
+    public Articulo(int Codigo, String Descripcion, float Precio, float GastosEnvio, int Tiempo) {
+        this.Codigo = Codigo;
+        this.Descripcion = Descripcion;
+        this.Precio = Precio;
+        this.GastosEnvio = GastosEnvio;
+        this.Tiempo = Tiempo;
+    }
 
-	public void setCodigoArticulo(String codigoArticulo) {
-		this.codigoArticulo = codigoArticulo;
-	}
+    public int getCodigo() {
+        return Codigo;
+    }
 
-	public String getDescArticulo() {
-		return descArticulo;
-	}
+    public void setCodigo(int Codigo) {
+        this.Codigo = Codigo;
+    }
 
-	public void setDescArticulo(String descArticulo) {
-		this.descArticulo = descArticulo;
-	}
+    public String getDescripcion() {
+        return Descripcion;
+    }
 
-	public String getPrecioArt() {
-		return precioArt;
-	}
+    public void setDescripcion(String Descripcion) {
+        this.Descripcion = Descripcion;
+    }
 
-	public void setPrecioArt(String precioArt) {
-		this.precioArt = precioArt;
-	}
-	
+    public float getPrecio() {
+        return Precio;
+    }
+
+    public void setPrecio(float Precio) {
+        this.Precio = Precio;
+    }
+
+    public float getGastosEnvio() {
+        return GastosEnvio;
+    }
+
+    public void setGastosEnvio(float GastosEnvio) {
+        this.GastosEnvio = GastosEnvio;
+    }
+
+    public int getTiempo() {
+        return Tiempo;
+    }
+
+    public void setTiempo(int Tiempo) {
+        this.Tiempo = Tiempo;
+    }
+
+    @Override
+    public String toString() {
+        return "Articulo{" + "Codigo=" + Codigo + ", Descripcion=" + Descripcion + ", Precio=" + Precio + ", GastosEnvio=" + GastosEnvio + ", Tiempo=" + Tiempo + '}';
+    }
+    
 }

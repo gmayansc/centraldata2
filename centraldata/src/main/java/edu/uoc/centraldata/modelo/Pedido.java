@@ -1,62 +1,100 @@
-package centraldata.modelo;
+package edu.uoc.centraldata.modelo;
 
+import java.time.LocalDate;
 
 public class Pedido {
-	
-	private Cliente cliente;
-	private Articulo articulo;
-	private int numPedido;
-	private String fechaHora;
-	//descripcion articulo
-	private int cantidad;
-	//precio articulo
-	private float costeEnvio;
-	private float precioTotal;
-	private boolean enviado;
-	
-	public Pedido(Cliente cli, Articulo art) {
-		this.articulo = art;
-		this.cliente = cli;
-	}
+    
+    public int Numero;
+    public Cliente Cliente;
+    public Articulo Articulo;
+    public int Unidades;
+    public LocalDate Fecha;
+    public LocalDate Hora;
+    public float PrecioFinal;
+    public boolean Envio;
 
-	public Cliente getCliente() {
-		return cliente;
-	}
+    public Pedido(int Numero, Cliente Cliente, Articulo Articulo, int Unidades, LocalDate Fecha, LocalDate Hora, float PrecioFinal, boolean Envio) {
+        this.Numero = Numero;
+        this.Cliente = Cliente;
+        this.Articulo = Articulo;
+        this.Unidades = Unidades;
+        this.Fecha = Fecha;
+        this.Hora = Hora;
+        this.PrecioFinal = PrecioFinal;
+        this.Envio = Envio;
+    }
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
+    public int getNumero() {
+        return Numero;
+    }
 
-	public Articulo getArticulo() {
-		return articulo;
-	}
+    public void setNumero(int Numero) {
+        this.Numero = Numero;
+    }
 
-	public void setArticulo(Articulo articulo) {
-		this.articulo = articulo;
-	}
-	
-	public boolean pedidoEnviado() {
-		return false;
-	}
-	
-	public float precioEnvio() {
-		return 0;
-	}
-	
-	@Override
-	public String toString() {
-		String cadena = "Pedido número: " + numPedido;
-		cadena += "\nFecha y hora: " + fechaHora;
-		cadena += "\nNIF cliente: " + this.cliente.getNIF();
-		cadena += "\nNombre cliente: " + this.cliente.getNombreCliente();
-		cadena += "\nCódigo Artículo: " + this.articulo.getCodigoArticulo();
-		cadena += "\nDescripción artículo: " + this.articulo.getDescArticulo();
-		cadena += "\nCantidad de artículos: " + cantidad;
-		cadena += "\nPrecio del artículo: " + this.articulo.getPrecioArt();
-		cadena += "\nCoste del envío: " + costeEnvio;
-		cadena += "\nPrecio total: " + precioTotal;
-		cadena += "\nEnviado: " + (enviado == true ? "SI" : "NO");
-		return cadena;
-	}
+    public Cliente getCliente() {
+        return Cliente;
+    }
 
+    public void setCliente(Cliente Cliente) {
+        this.Cliente = Cliente;
+    }
+
+    public Articulo getArticulo() {
+        return Articulo;
+    }
+
+    public void setArticulo(Articulo Articulo) {
+        this.Articulo = Articulo;
+    }
+
+    public int getUnidades() {
+        return Unidades;
+    }
+
+    public void setUnidades(int Unidades) {
+        this.Unidades = Unidades;
+    }
+
+    public LocalDate getFecha() {
+        return Fecha;
+    }
+
+    public void setFecha(LocalDate Fecha) {
+        this.Fecha = Fecha;
+    }
+
+    public LocalDate getHora() {
+        return Hora;
+    }
+
+    public void setHora(LocalDate Hora) {
+        this.Hora = Hora;
+    }
+
+    public float getPrecioFinal() {
+        return PrecioFinal;
+    }
+
+    public void setPrecioFinal(float PrecioFinal) {
+        this.PrecioFinal = PrecioFinal;
+    }
+
+    public boolean isEnvio() {
+        return Envio;
+    }
+
+    public void setEnvio(boolean Envio) {
+        this.Envio = Envio;
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido{" + "Numero=" + Numero + ", Cliente=" + Cliente + ", Articulo=" + Articulo + ", Unidades=" + Unidades + ", Fecha=" + Fecha + ", Hora=" + Hora + ", PrecioFinal=" + PrecioFinal + ", Envio=" + Envio + '}';
+    }
+    
+    //public boolean pedidoEnviado();
+    
+    //public float precioEnvio();
+    
 }

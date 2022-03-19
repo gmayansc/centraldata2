@@ -1,21 +1,59 @@
-package centraldata.modelo;
+package edu.uoc.centraldata.modelo;
 
 public class ClientePremium extends Cliente{
-	public  String tipoCliente() {
-		return null;
-	}
 
-	public  float calcAnual() {
-		return 0;
-	}
+    public ClientePremium(String Nombre, String Domicilio, String NIF, String Email, boolean Tipo) {
+        super(Nombre, Domicilio, NIF, Email, Tipo);
+    }
 
-	public  float descuentoEnv() {
-		return 0;
-	}
-	
-	@Override
-	public String toString() {
-		return "hola";
-	}
+    @Override
+    public String getNombre() {
+        return Nombre;
+    }
+
+    @Override
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
+    }
+
+    @Override
+    public String getDomicilio() {
+        return Domicilio;
+    }
+
+    @Override
+    public void setDomicilio(String Domicilio) {
+        this.Domicilio = Domicilio;
+    }
+
+    @Override
+    public String getNIF() {
+        return NIF;
+    }
+
+    @Override
+    public void setNIF(String NIF) {
+        this.NIF = NIF;
+    }
+
+    @Override
+    public String getEmail() {
+        return Email;
+    }
+
+    @Override
+    public void setEmail(String Email) {
+        this.Email = Email;
+    }
+
+    @Override
+    public boolean getTipo() {
+        return Tipo;
+    }
+
+    @Override
+    public void setTipo(boolean Tipo) {
+        this.Tipo = Tipo;
+    }
 
 }
