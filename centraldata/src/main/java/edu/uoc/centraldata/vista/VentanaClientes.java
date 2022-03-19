@@ -1,8 +1,10 @@
 
 package edu.uoc.centraldata.vista;
 
-public class GestionClientes extends VentanaMenu{
-    
+public class VentanaClientes extends VentanaMenu{
+    public static void pintarMenu(){
+        System.out.println("AQUI VA EL MENU DE ARTICULOS");
+    }
 }
 
 //añadirCliente(): void

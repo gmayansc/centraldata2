@@ -1,4 +1,6 @@
 package edu.uoc.centraldata.modelo;
+import java.util.ArrayList;
+
 
 import java.util.ArrayList;
 
@@ -55,5 +57,5 @@ public class ListaArticulos<T> extends ListaDatos <Articulo>{
             System.out.println("No existe el Articulos");
         }    
     }
-    
+
 }

@@ -7,6 +7,8 @@ public class Articulo {
     public double Precio;
     public double GastosEnvio;
     public int Tiempo;
+    
+    public Articulo(){};
 
     public Articulo(String Codigo, String Descripcion, double Precio, double GastosEnvio, int Tiempo) {
         this.Codigo = Codigo;
