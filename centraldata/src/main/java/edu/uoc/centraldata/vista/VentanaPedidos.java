@@ -1,7 +1,11 @@
 
 package edu.uoc.centraldata.vista;
 
-public class GestionPedidos extends VentanaMenu{
+public class VentanaPedidos extends VentanaMenu{
+    
+        public static void pintarMenu(){
+        System.out.println("AQUI VA EL MENU DE PEDIDOS");
+    }
     
 }
 

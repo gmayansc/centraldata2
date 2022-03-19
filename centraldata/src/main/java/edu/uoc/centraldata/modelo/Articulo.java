@@ -7,6 +7,8 @@ public class Articulo {
     public float Precio;
     public float GastosEnvio;
     public int Tiempo;
+    
+    public Articulo(){};
 
     public Articulo(int Codigo, String Descripcion, float Precio, float GastosEnvio, int Tiempo) {
         this.Codigo = Codigo;
