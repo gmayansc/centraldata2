@@ -25,27 +25,19 @@ public class VentanaMenu {
         int opcionMenu = Integer.parseInt(entrada.nextLine());
         
         switch (opcionMenu) {
-            case 1:
+            case '1':
                 VentanaArticulos.pintarMenu();
                 break;
-            case 2: 
+            case '2': 
                 VentanaClientes.pintarMenu();
                 break;
-            case 3:
+            case '3':
                 VentanaClientes.pintarMenu();
                 break;
-            case 4:
+            case '4':
                 break;
             default:
                 break;
-        };
-        
-        
-    }
-    
+        };    
+    }   
 }
-
-//mostrarGestionArticulos(): void
-//mostrarGestionClientes(): void
-//mostrarGestionPedidos(): void
-//salir(): void

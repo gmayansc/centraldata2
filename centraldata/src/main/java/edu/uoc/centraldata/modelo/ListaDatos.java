@@ -26,10 +26,6 @@ public class ListaDatos<T> {
         return aList;
     }
 
-public int getSize() {
-        return this.lista.size();
-    }
-
     public void añadir(T t) throws Exception {
         this.lista.add(t);
     }
@@ -48,11 +44,6 @@ public int getSize() {
     
     public boolean isEmpty() {
         return lista.isEmpty();
-    }
-    
-    public ArrayList<T> getArrayList() {
-        ArrayList<T> aList = new ArrayList<>(lista);
-        return aList;
     }
     
 }
