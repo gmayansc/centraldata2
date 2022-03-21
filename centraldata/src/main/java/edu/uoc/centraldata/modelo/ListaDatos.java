@@ -3,47 +3,47 @@ package edu.uoc.centraldata.modelo;
 import java.util.ArrayList;
 
 public class ListaDatos<T> {
-    protected  ArrayList<T> ListaDatos;
+    protected  ArrayList<T> lista;
 
     public ListaDatos() {
-     ListaDatos = new ArrayList<>();
+     lista = new ArrayList<>();
     }
     
     public int getSize(){
-        return this.ListaDatos.size();
+        return this.lista.size();
     }
     
-    public void anadir(T t) {
-        this.ListaDatos.add(t);
+    public void agregar(T t) {
+        this.lista.add(t);
     }
     
     public void borrar(T t){
-        this.ListaDatos.remove(t);
+        this.lista.remove(t);
     }
     
     public ArrayList<T> getArrayList(){
-        ArrayList<T> aList = new ArrayList<>(ListaDatos);
+        ArrayList<T> aList = new ArrayList<>(lista);
         return aList;
     }
 
     public void añadir(T t) throws Exception {
-        this.ListaDatos.add(t);
+        this.lista.add(t);
     }
 
     public void esborrar(T t) {
-        this.ListaDatos.remove(t); 
+        this.lista.remove(t); 
     }
     
     public T getAt(int position) {
-       return this.ListaDatos.get(position);
+       return this.lista.get(position);
     }
 
     public void clear() {
-        this.ListaDatos.clear();
+        this.lista.clear();
     }
     
     public boolean isEmpty() {
-        return ListaDatos.isEmpty();
+        return lista.isEmpty();
     }
     
 }

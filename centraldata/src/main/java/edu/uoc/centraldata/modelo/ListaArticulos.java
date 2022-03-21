@@ -1,23 +1,30 @@
 package edu.uoc.centraldata.modelo;
 import java.util.ArrayList;
 
-
-import java.util.ArrayList;
-
-public class ListaArticulos extends ListaDatos <Articulo>{
+public class ListaArticulos extends ListaDatos <Articulo> {
 
 
-    
-    public void agregarArticulo(Articulo Articulo) {
-        if (!this.existeArticulo(Articulo)) {
-            this.ListaDatos.add(Articulo);
+    @Override
+    public void agregar(Articulo articulo) {
+        if (!existeArticulo(articulo.getCodigo())) {
+            this.lista.add(articulo);
             System.out.println("El Articulo ha sido Creado");
         } else {
             System.out.println("Este Articulo ya existe");
         }
     }
-        public boolean existeArticulo(Articulo Articulo) {
-        throw new UnsupportedOperationException(""); 
+    
+    public boolean existeArticulo(int codigo) {
+       boolean bol = false;
+        for (int i = 0; i < lista.size(); i++) {
+            Articulo art = (Articulo) lista.get(i);
+            if (codigo == art.getCodigo()) {
+                bol = true;
+            } else {
+                bol = false;
+            }
+        }
+        return bol;
     }
     /*public Articulo Articulo;
             

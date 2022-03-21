@@ -10,24 +10,30 @@ public class VentanaArticulos extends VentanaMenu {
     static Scanner entrada = new Scanner(System.in);
 
     public static void pintarMenu() {
-        System.out.println("\n =========== GESTION DE ARTÍCULOS ===========\n");
-        System.out.println(" 1. Añadir un artículo");
-        System.out.println(" 2. Eliminar un artículo");
-        System.out.println(" 3. Mostrar los artículos");
-        System.out.println(" 4. Volver");
 
-        int opcion = Integer.parseInt(entrada.nextLine());
-        
-        switch (opcion) {
-            case 1:
-                menuAnadirArticulo();
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
+        boolean salir = false;
+        while (!salir) {
+            System.out.println("\n =========== GESTION DE ARTÍCULOS ===========\n");
+            System.out.println(" 1. Añadir un artículo");
+            System.out.println(" 2. Eliminar un artículo");
+            System.out.println(" 3. Mostrar los artículos");
+            System.out.println(" 4. Volver");
+
+            int opcion = Integer.parseInt(entrada.nextLine());
+
+            switch (opcion) {
+                case 1:
+                    menuAnadirArticulo();
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    ArticuloControlador.leerLista();
+                    break;
+                case 4:
+                    salir = true;
+                    break;
+            }
         }
     }
 
@@ -40,7 +46,7 @@ public class VentanaArticulos extends VentanaMenu {
 
         System.out.println("\n =========== NUEVO ARTÍCULO ===========\n");
         System.out.println(" Introduce el código del artículo:");
-        codigo = Integer.parseInt(entrada.nextLine());        
+        codigo = Integer.parseInt(entrada.nextLine());
         System.out.println(" Introduce la descripción del artículo:");
         descripcion = entrada.nextLine();
         System.out.println(" Introduce el precio:");
@@ -50,7 +56,7 @@ public class VentanaArticulos extends VentanaMenu {
         System.out.println(" Introduce el tiempo de preparación:");
         tiempo = Integer.parseInt(entrada.nextLine());
 
-        //ArticuloControlador.anadirArticulo(codigo, descripcion, precio, gastosEnvio, tiempo);
+        ArticuloControlador.anadirArticulo(codigo, descripcion, precio, gastosEnvio, tiempo);
         System.out.println("El artículo se ha creado.");
 
     }
