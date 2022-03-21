@@ -1,14 +1,16 @@
 package edu.uoc.centraldata.modelo;
 
-public class Cliente {
+public abstract class Cliente {
     
     public String Nombre;
     public String Domicilio;
     public String NIF;
     public String Email;
-    public boolean Tipo;
+    public String Tipo;
+    
+    public Cliente(){};
 
-    public Cliente(String Nombre, String Domicilio, String NIF, String Email, boolean Tipo) {
+    public Cliente(String NIF, String Nombre, String Domicilio,  String Email, String Tipo) {
         this.Nombre = Nombre;
         this.Domicilio = Domicilio;
         this.NIF = NIF;
@@ -48,11 +50,11 @@ public class Cliente {
         this.Email = Email;
     }
 
-    public boolean getTipo() {
+    public String getTipo() {
         return Tipo;
     }
 
-    public void setTipo(boolean Tipo) {
+    public void setTipo(String Tipo) {
         this.Tipo = Tipo;
     }
 
