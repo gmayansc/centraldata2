@@ -3,7 +3,7 @@ package edu.uoc.centraldata.modelo;
 import java.util.ArrayList;
 
 public class ListaDatos<T> {
-    protected  ArrayList<T> lista;
+    protected   ArrayList<T> lista;
 
     public ListaDatos() {
      lista = new ArrayList<>();

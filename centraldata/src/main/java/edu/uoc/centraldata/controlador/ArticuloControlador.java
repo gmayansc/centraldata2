@@ -1,6 +1,9 @@
 package edu.uoc.centraldata.controlador;
 
-import edu.uoc.centraldata.modelo.*;
+import edu.uoc.centraldata.modelo.ListaDatos;
+import edu.uoc.centraldata.modelo.Articulo;
+import edu.uoc.centraldata.modelo.ListaArticulos;
+
 import java.util.Iterator;
 
 public class ArticuloControlador {
@@ -32,10 +35,35 @@ public class ArticuloControlador {
             System.out.println("El articulo " + listaArticulos.getAt(i).getCodigo() + " es:  " + listaArticulos.getAt(i).getDescripcion());
         }
     }
+    
+    public static void eliminarArticulo(int codigo){
+        if (existeArticulo(codigo)) {
+            Articulo art = (Articulo) listaArticulos.getAt(codigo);
+            listaArticulos.borrar(art);
+            System.out.print("Articulo eliminado correctamente");
+        }
+        else {
+            System.out.println("No existe el Articulo");
+        }
+    }
+}
 
+   /*public int exist(int codigo) {
+        for (i = 0; i < this.listaArticulos.getSize(); i++) {
+            Articulo art =  this.listaArticulos.getAt(i);
+            if (codigo == art.getCodigo()) {
+                bol = i;
+            } else {
+                bol = -1;
+            }
+        }
+        return bol;
+    }
+    
 }
 
 //existeArticulo(Codigo: int): boolean
-//añadirArticulo(Codigo: int, Descripcion: String, Precio: float, GastosEnvio: float, Tiempo: int): void
-//eliminarArticulo(Articulo: Articulo): void
-//mostrarArticulos(Articulo: Articulo): void
+//añadirArticulo(Codigo: int, Descripcion: String, Precio: float, GastosEnvio: float, Tiempo: int): void HECHO
+//eliminarArticulo(Articulo: Articulo): void 
+//mostrarArticulos(Articulo: Articulo): void HECHO*/
+ 

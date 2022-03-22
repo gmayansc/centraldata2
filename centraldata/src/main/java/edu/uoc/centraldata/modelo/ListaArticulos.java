@@ -3,10 +3,13 @@ import java.util.ArrayList;
 
 public class ListaArticulos extends ListaDatos <Articulo> {
 
+    public static int bol = 0;
+    public static int i=0;
 
-    @Override
+   
+ 
     public void agregar(Articulo articulo) {
-        if (!existeArticulo(articulo.getCodigo())) {
+        if (-1!=existeArticulo(articulo.getCodigo())) {
             this.lista.add(articulo);
             System.out.println("El Articulo ha sido Creado");
         } else {
@@ -14,14 +17,13 @@ public class ListaArticulos extends ListaDatos <Articulo> {
         }
     }
     
-    public boolean existeArticulo(int codigo) {
-       boolean bol = false;
-        for (int i = 0; i < lista.size(); i++) {
-            Articulo art = (Articulo) lista.get(i);
+    public int existeArticulo(int codigo) {
+        for (i = 0; i < this.lista.size(); i++) {
+            Articulo art =  this.lista.get(i);
             if (codigo == art.getCodigo()) {
-                bol = true;
+                bol = i;
             } else {
-                bol = false;
+                bol = -1;
             }
         }
         return bol;

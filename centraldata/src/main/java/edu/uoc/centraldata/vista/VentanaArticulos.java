@@ -1,6 +1,8 @@
 package edu.uoc.centraldata.vista;
 
 import edu.uoc.centraldata.controlador.ArticuloControlador;
+import static edu.uoc.centraldata.controlador.ArticuloControlador.eliminarArticulo;
+import static edu.uoc.centraldata.controlador.ArticuloControlador.leerLista;
 import edu.uoc.centraldata.modelo.Articulo;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -8,6 +10,7 @@ import java.util.Scanner;
 public class VentanaArticulos extends VentanaMenu {
 
     static Scanner entrada = new Scanner(System.in);
+    
 
     public static void pintarMenu() {
 
@@ -26,9 +29,10 @@ public class VentanaArticulos extends VentanaMenu {
                     menuAnadirArticulo();
                     break;
                 case 2:
+                    menuEliminarArticulo();
                     break;
                 case 3:
-                    ArticuloControlador.leerLista();
+                    leerLista();
                     break;
                 case 4:
                     salir = true;
@@ -61,7 +65,17 @@ public class VentanaArticulos extends VentanaMenu {
 
     }
 ;
+    public static void menuEliminarArticulo() {
+        int codigo;
 
+        System.out.println("\n =========== ELIMINAR ARTÍCULO ===========\n");
+        System.out.println(" Introduce el código del artículo:");
+        codigo = Integer.parseInt(entrada.nextLine());
+
+        eliminarArticulo(codigo);
+        System.out.println("El artículo se ha creado.");
+
+    }
 }
     
     /* public static Articulo Articulo;
