@@ -4,29 +4,48 @@ import java.util.ArrayList;
 public class ListaArticulos extends ListaDatos <Articulo> {
 
     public static int bol = 0;
-    public static int i=0;
+    
 
    
- 
-    public void agregar(Articulo articulo) {
-        if (-1!=existeArticulo(articulo.getCodigo())) {
-            this.lista.add(articulo);
-            System.out.println("El Articulo ha sido Creado");
-        } else {
-            System.out.println("Este Articulo ya existe");
+    
+//    public void agregar(Articulo articulo) {
+//        if (existeArticulo(articulo)) {
+//            this.lista.add(articulo);
+//            System.out.println("El Articulo ha sido Creado");
+//        } else {
+//            System.out.println("Este Articulo ya existe");
+//        }
+//    }
+//    
+//    public boolean existeArticulo(Articulo art) {
+//        for (int i = 0; i < this.lista.size(); i++) {
+//            Articulo art2 =  this.lista.get(i);
+//            if (art2.getCodigo() == art.getCodigo()) {
+//               return true;
+//            }
+//        }
+//        return false;
+//    }
+    
+   
+    public void borrarArticulo(int codigo){
+        Articulo art = getArticulo(codigo);
+        if(null != art){
+            this.lista.remove(art);
         }
+        System.out.println(art);
     }
     
-    public int existeArticulo(int codigo) {
-        for (i = 0; i < this.lista.size(); i++) {
-            Articulo art =  this.lista.get(i);
-            if (codigo == art.getCodigo()) {
-                bol = i;
-            } else {
-                bol = -1;
-            }
+        public Articulo getArticulo(int codigo){
+            for (int i = 0; i < this.lista.size(); i++){
+                Articulo art = this.lista.get(i);
+                if (art.getCodigo() == codigo){
+                    return art;
+                }
+            } 
+            return null;
         }
-        return bol;
+        
     }
     /*public Articulo Articulo;
             
@@ -71,4 +90,4 @@ public class ListaArticulos extends ListaDatos <Articulo> {
         }    
     }
 */
-}
+

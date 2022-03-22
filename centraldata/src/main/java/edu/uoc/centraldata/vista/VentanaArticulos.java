@@ -72,8 +72,8 @@ public class VentanaArticulos extends VentanaMenu {
         System.out.println(" Introduce el código del artículo:");
         codigo = Integer.parseInt(entrada.nextLine());
 
-        eliminarArticulo(codigo);
-        System.out.println("El artículo se ha creado.");
+        ArticuloControlador.eliminarArticulo(codigo);
+        System.out.println("El artículo se ha borrado.");
 
     }
 }
