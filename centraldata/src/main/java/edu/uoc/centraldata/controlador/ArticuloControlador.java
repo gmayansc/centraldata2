@@ -19,10 +19,9 @@ public class ArticuloControlador {
         listaArticulos.agregar(art1);
         listaArticulos.agregar(art2);
         listaArticulos.agregar(art3);
-
     }
 
-    public static void anadirArticulo(int codigo, String descripcion, float precio, float gastosEnvio, int tiempo) {
+    public static void anadirArticulo(int codigo, String descripcion, double precio, double gastosEnvio, int tiempo) {
 
         //INSTANCIAMOS UN OBJETO ARTÍCULO
         Articulo art = new Articulo(codigo, descripcion, precio, gastosEnvio, tiempo);
@@ -38,6 +37,16 @@ public class ArticuloControlador {
     
     public static void eliminarArticulo(int codigo){
         listaArticulos.borrarArticulo(codigo);
+    }
+    
+    public static Articulo getArticulo(int codigo) {
+        for (int i = 0; i < listaArticulos.getSize(); i++) {
+            Articulo art = listaArticulos.getAt(i);
+            if (codigo == art.getCodigo()) {
+                return art;
+            }
+        }
+        return null;
     }
     
 

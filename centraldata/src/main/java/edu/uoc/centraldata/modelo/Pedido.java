@@ -1,51 +1,65 @@
 package edu.uoc.centraldata.modelo;
 
-import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Pedido {
-    
-    public String Numero;
-    public String Cliente;
-    public String Articulo;
+
+    public int codigo;
+    public Cliente Cliente;
+    public Articulo Articulo;
     public int Unidades;
-    public String Fecha;
-    public String Hora;
-    public double PrecioFinal;
+    public LocalDate Fecha;
+    public LocalTime Hora;
+    public double precioFinal;
     public boolean Envio;
 
-    public Pedido(String Numero, String Cliente, String Articulo, int Unidades, String Fecha, String Hora, double PrecioFinal, boolean Envio) {
-        this.Numero = Numero;
+    public Pedido(int codigo,  Cliente cli, Articulo art, int unidades, LocalDate Fecha, LocalTime Hora) {
+        this.codigo = this.codigo;
         this.Cliente = Cliente;
         this.Articulo = Articulo;
         this.Unidades = Unidades;
         this.Fecha = Fecha;
         this.Hora = Hora;
-        this.PrecioFinal = PrecioFinal;
+        this.precioFinal = precioFinal(cli, art);
         this.Envio = Envio;
     }
 
-    public String getNumero() {
-        return Numero;
+    public double precioFinal(Cliente cli, Articulo art) {
+        double precio = 0;
+        double gastosEnvio = 0;
+        
+        if (cli.getTipo().equals("PREMIUM")) {
+            gastosEnvio = art.getGastosEnvio() * 2.00;
+        } else {
+            gastosEnvio = art.getGastosEnvio();
+        }
+        
+        precio = art.getPrecio() * this.Unidades + gastosEnvio;
+        return precio;
     }
 
-    public void setNumero(String Numero) {
-        this.Numero = Numero;
+    public int getNumero() {
+        return codigo;
     }
 
-    public String getCliente() {
+    public void setNumero(int numero) {
+        this.codigo = numero;
+    }
+
+    public Cliente getCliente() {
         return Cliente;
     }
 
-    public void setCliente(String Cliente) {
+    public void setCliente(Cliente Cliente) {
         this.Cliente = Cliente;
     }
 
-    public String getArticulo() {
+    public Articulo getArticulo() {
         return Articulo;
     }
 
-    public void setArticulo(String Articulo) {
+    public void setArticulo(Articulo Articulo) {
         this.Articulo = Articulo;
     }
 
@@ -57,28 +71,28 @@ public class Pedido {
         this.Unidades = Unidades;
     }
 
-    public String getFecha() {
+    public LocalDate getFecha() {
         return Fecha;
     }
 
-    public void setFecha(String Fecha) {
+    public void setFecha(LocalDate Fecha) {
         this.Fecha = Fecha;
     }
 
-    public String getHora() {
+    public LocalTime getHora() {
         return Hora;
     }
 
-    public void setHora(String Hora) {
+    public void setHora(LocalTime Hora) {
         this.Hora = Hora;
     }
 
     public double getPrecioFinal() {
-        return PrecioFinal;
+        return precioFinal;
     }
 
-    public void setPrecioFinal(double PrecioFinal) {
-        this.PrecioFinal = PrecioFinal;
+    public void setPrecioFinal(double precioFinal) {
+        this.precioFinal = precioFinal;
     }
 
     public boolean isEnvio() {
@@ -88,14 +102,14 @@ public class Pedido {
     public void setEnvio(boolean Envio) {
         this.Envio = Envio;
     }
-    
-        boolean getEnvio() {
+
+    boolean getEnvio() {
         throw new UnsupportedOperationException("");
     }
 
     @Override
     public String toString() {
-        return "Pedido{" + "Numero=" + Numero + ", Cliente=" + Cliente + ", Articulo=" + Articulo + ", Unidades=" + Unidades + ", Fecha=" + Fecha + ", Hora=" + Hora + ", PrecioFinal=" + PrecioFinal + ", Envio=" + Envio + '}';
+        return "Pedido{" + "Numero=" + codigo + ", Cliente=" + this.Cliente.getNombre() + ", Articulo=" + this.Articulo.getDescripcion() + ", Unidades=" + Unidades + ", Fecha=" + Fecha + ", Hora=" + Hora + ", PrecioFinal=" + precioFinal + ", Envio=" + Envio + '}';
     }
-    
+
 }

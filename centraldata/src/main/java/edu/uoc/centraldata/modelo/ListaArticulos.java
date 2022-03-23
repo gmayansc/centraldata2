@@ -1,53 +1,53 @@
 package edu.uoc.centraldata.modelo;
+
 import java.util.ArrayList;
 
-public class ListaArticulos extends ListaDatos <Articulo> {
+public class ListaArticulos extends ListaDatos<Articulo> {
 
-    public static int bol = 0;
-    
+    @Override
+    public void agregar(Articulo articulo) {
+        if (!existeArticulo(articulo)) {
+            this.lista.add(articulo);
+        } else {
+            System.out.println("Este Articulo ya existe");
+        }
+    }
 
-   
-    
-//    public void agregar(Articulo articulo) {
-//        if (existeArticulo(articulo)) {
-//            this.lista.add(articulo);
-//            System.out.println("El Articulo ha sido Creado");
-//        } else {
-//            System.out.println("Este Articulo ya existe");
-//        }
-//    }
-//    
-//    public boolean existeArticulo(Articulo art) {
-//        for (int i = 0; i < this.lista.size(); i++) {
-//            Articulo art2 =  this.lista.get(i);
-//            if (art2.getCodigo() == art.getCodigo()) {
-//               return true;
-//            }
-//        }
-//        return false;
-//    }
-    
-   
-    public void borrarArticulo(int codigo){
+    public void borrarArticulo(int codigo) {
         Articulo art = getArticulo(codigo);
-        if(null != art){
+        if (existeArticulo(art)) {
             this.lista.remove(art);
+        } else {
+            System.out.println("El artículo no existe y, por tanto, no se puede borrar.");
         }
-        System.out.println(art);
     }
-    
-        public Articulo getArticulo(int codigo){
-            for (int i = 0; i < this.lista.size(); i++){
-                Articulo art = this.lista.get(i);
-                if (art.getCodigo() == codigo){
-                    return art;
+
+    public boolean existeArticulo(Articulo art) {
+
+        if (art != null) {
+
+            for (int i = 0; i < this.lista.size(); i++) {
+                Articulo art2 = this.lista.get(i);
+                if (art2.getCodigo() == art.getCodigo()) {
+                    return true;
                 }
-            } 
-            return null;
+            }
         }
-        
+        return false;
     }
-    /*public Articulo Articulo;
+
+    public Articulo getArticulo(int codigo) {
+        for (int i = 0; i < this.lista.size(); i++) {
+            Articulo art = this.lista.get(i);
+            if (art.getCodigo() == codigo) {
+                return art;
+            }
+        }
+        return null;
+    }
+
+}
+/*public Articulo Articulo;
             
     public ArrayList<T> listaArticulo;
     
@@ -89,5 +89,4 @@ public class ListaArticulos extends ListaDatos <Articulo> {
             System.out.println("No existe el Articulos");
         }    
     }
-*/
-
+ */

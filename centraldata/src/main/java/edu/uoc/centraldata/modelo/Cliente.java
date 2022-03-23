@@ -2,36 +2,36 @@ package edu.uoc.centraldata.modelo;
 
 public abstract class Cliente {
     
-    public String Nombre;
-    public String Domicilio;
+    public String nombre;
+    public String domicilio;
     public String NIF;
-    public String Email;
-    public String Tipo;
+    public String email;
+    public String tipo;
     
     public Cliente(){};
 
     public Cliente(String NIF, String Nombre, String Domicilio,  String Email, String Tipo) {
-        this.Nombre = Nombre;
-        this.Domicilio = Domicilio;
+        this.nombre = Nombre;
+        this.domicilio = Domicilio;
         this.NIF = NIF;
-        this.Email = Email;
-        this.Tipo = Tipo;
+        this.email = Email;
+        this.tipo = Tipo;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+        this.nombre = Nombre;
     }
 
     public String getDomicilio() {
-        return Domicilio;
+        return domicilio;
     }
 
     public void setDomicilio(String Domicilio) {
-        this.Domicilio = Domicilio;
+        this.domicilio = Domicilio;
     }
 
     public String getNIF() {
@@ -43,34 +43,26 @@ public abstract class Cliente {
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String Email) {
-        this.Email = Email;
+        this.email = Email;
     }
 
     public String getTipo() {
-        return Tipo;
+        return tipo;
     }
 
     public void setTipo(String Tipo) {
-        this.Tipo = Tipo;
+        this.tipo = Tipo;
     }
 
     @Override
-    public String toString() {
-        return "Cliente{" + "Nombre=" + Nombre + ", Domicilio=" + Domicilio + ", NIF=" + NIF + ", Email=" + Email + ", Tipo=" + Tipo + '}';
+     public String toString() {
+        return "Cliente{" + "Nombre=" + nombre + ", Domicilio=" + domicilio + ", NIF=" + NIF + ", Email=" + email + ", Tipo=" + tipo + "}";
     }
-    
-      boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-      
-      private boolean comprobarTipo(boolean tipo) {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
-    
+
     //public float calcAnual();
     
     //public float descuentoEnv();
