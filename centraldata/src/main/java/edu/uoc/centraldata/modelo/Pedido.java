@@ -14,18 +14,23 @@ public class Pedido {
     public double precioFinal;
     public boolean Envio;
 
-    public Pedido(int codigo,  Cliente cli, Articulo art, int unidades, LocalDate Fecha, LocalTime Hora) {
-        this.codigo = this.codigo;
-        this.Cliente = Cliente;
-        this.Articulo = Articulo;
-        this.Unidades = Unidades;
+    public Pedido(int cod,  Cliente cli, Articulo art, int unidades, LocalDate Fecha, LocalTime Hora) {
+        this.codigo = cod;
+        this.Cliente = cli;
+        this.Articulo = art;
+        this.Unidades = unidades;
         this.Fecha = Fecha;
         this.Hora = Hora;
-        this.precioFinal = precioFinal(cli, art);
-        this.Envio = Envio;
+        this.Envio = false;
     }
-
-    public double precioFinal(Cliente cli, Articulo art) {
+    
+    public void setPrecioFinal(double precioFinal) {
+        this.precioFinal = precioFinal;
+    }
+    
+    
+    
+    public double getPrecioFinal(Cliente cli, Articulo art) {
         double precio = 0;
         double gastosEnvio = 0;
         
@@ -91,9 +96,7 @@ public class Pedido {
         return precioFinal;
     }
 
-    public void setPrecioFinal(double precioFinal) {
-        this.precioFinal = precioFinal;
-    }
+
 
     public boolean isEnvio() {
         return Envio;
@@ -109,7 +112,14 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "Pedido{" + "Numero=" + codigo + ", Cliente=" + this.Cliente.getNombre() + ", Articulo=" + this.Articulo.getDescripcion() + ", Unidades=" + Unidades + ", Fecha=" + Fecha + ", Hora=" + Hora + ", PrecioFinal=" + precioFinal + ", Envio=" + Envio + '}';
+       
+        return    "PEDIDO nº "+this.codigo+"\n"
+                + "Cliente="+ this.Cliente.getNombre()+"\n"
+                + "Producto= "+ this.Articulo.getDescripcion()+"\n"
+                + "Cantidad = " + this.Unidades+"\n"
+                + "Precio producto = " + this.Articulo.getPrecio()+"\n"
+                + "Precio FINAL = "+  this.getPrecioFinal(Cliente, Articulo)+"\n";
+              
     }
 
 }

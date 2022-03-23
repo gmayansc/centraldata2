@@ -9,12 +9,12 @@ public class PedidoControlador {
     public static ListaPedidos listaPedidos = new ListaPedidos();
     
     public static void anadirPedido(int numero,  Cliente cli, Articulo art, int unidades, LocalDate fecha, LocalTime hora) {
-
+        System.out.print("crear pedido");
         //INSTANCIAMOS UN OBJETO ARTÍCULO
         Pedido ped = new Pedido(numero, cli, art, unidades, fecha, hora);
         listaPedidos.agregar(ped);
 
-        System.out.println(ped.toString());
+        System.out.println(ped);
     }
 
 }

@@ -76,7 +76,7 @@ public class VentanaPedidos extends VentanaMenu {
     }
 
     public static void menuCrearPedido() {
-        String numero;
+        int numero;
         String emailCliente;
         int codigoArticulo;
         int unidades;
@@ -86,7 +86,7 @@ public class VentanaPedidos extends VentanaMenu {
         boolean envio = false;
 
         System.out.println("Número pedido:");
-        numero = teclado.nextLine();
+        numero = Integer.parseInt(teclado.nextLine());
         System.out.println("Introduce el mail del cliente:");
         emailCliente = teclado.nextLine();
 
@@ -109,17 +109,17 @@ public class VentanaPedidos extends VentanaMenu {
             System.out.println("El artículo no existe y debes crearlo:");
             VentanaArticulos.menuAnadirArticulo();
             art = ArticuloControlador.getArticulo(codigoArticulo);
-
         } else {
             System.out.println("Se ha encontrado un articulo con este código y se le asociará el pedido.");
             art = ArticuloControlador.getArticulo(codigoArticulo);
         }
-
+        System.out.println(art);
         System.out.println("¿Cuántas unidades?");
-        unidades = teclado.nextInt();
+        unidades = Integer.parseInt(teclado.nextLine());
         fecha = LocalDate.now();
         hora = LocalTime.now();
-        PedidoControlador.anadirPedido(unidades, cli, art, unidades, fecha, hora);
+        System.out.print("Se envia al controlador "+ " " + numero +" "+ cli +" "+ art +" "+ unidades +" "+ fecha +" " + hora);
+        PedidoControlador.anadirPedido(numero, cli, art, unidades, fecha, hora);
     }
 
 }
