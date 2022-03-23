@@ -1,6 +1,7 @@
 package edu.uoc.centraldata.modelo;
 
 import java.util.ArrayList;
+import edu.uoc.centraldata.modelo.*;
 
 public class ListaDatos<T> {
     protected   ArrayList<T> lista;

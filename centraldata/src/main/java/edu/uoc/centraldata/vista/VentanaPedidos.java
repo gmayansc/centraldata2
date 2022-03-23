@@ -1,132 +1,127 @@
-
 package edu.uoc.centraldata.vista;
 
-import edu.uoc.centraldata.controlador.PedidoControlador;
-import edu.uoc.centraldata.modelo.Pedido;
-import java.util.ArrayList;
+import edu.uoc.centraldata.controlador.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+import edu.uoc.centraldata.modelo.*;
 import java.util.Scanner;
 
-public class VentanaPedidos extends VentanaMenu{
-    
-    public static Pedido Pedido;
-    public static ArrayList listaPedido;
-    
-     static Scanner teclado = new Scanner(System.in);
-    
-    @SuppressWarnings({"empty-statement", "null"})
-   
-    static int opcion = teclado.nextInt();
-            
-char pedirOpcion() {
-        String resp;
-        System.out.println("Elige una opción (1,2,3,4,5,6): ");
-        resp = teclado.nextLine();
-        if (resp.isEmpty()) {
-            resp = " ";
-        }
-        return resp.charAt(0);
-    }
+public class VentanaPedidos extends VentanaMenu {
 
-public static void pintarMenu(){
-            boolean salir = false;
-            char opcio;
-            do {
-        System.out.println("\n =========== GESTION DE ARTÍCULOS ===========\n");
-        System.out.println(" 1. Añadir un pedido");
-        System.out.println(" 2. Eliminar un pedido");
-        System.out.println(" 3. Mostrar los pedidos");
-        System.out.println(" 4. Mostrar los pedidos pendientes");
-        System.out.println(" 5. Mostrar los pedidos enviados");
-        System.out.println(" 6. Volver");
+    static Scanner teclado = new Scanner(System.in);
 
-        switch (opcion) {
-            case '1':
-                        String Numero;
-                        String Cliente;
-                        String Articulo;
-                        int Unidades;
-                        String Fecha;
-                        String Hora;
-                        double PrecioFinal;
-                        boolean Envio = false;
-                    System.out.println("Número");
-                        Numero= teclado.nextLine();
-                    System.out.println("Cliente");
-                        Cliente=teclado.nextLine();
-                    System.out.println("Artículo");
-                        Articulo=teclado.nextLine();
-                    System.out.println("Unidades");
-                        Unidades=teclado.nextInt();
-                    System.out.println("Fecha");
-                        Fecha=teclado.nextLine();   
-                    System.out.println("Hora");
-                        Hora=teclado.nextLine();
-                    System.out.println("Precio Final");
-                        PrecioFinal=teclado.nextInt();
-                    System.out.println("Envío");
-                        Envio=teclado.nextBoolean();
-                for (int i = 0; i < listaPedido.size(); i++) {
-                    if (Numero.equals(Pedido.getNumero())) {
-                    System.out.println("Este Pedido ya existe");
-                            break;          
-                        }else{
-                            listaPedido.add(new Pedido(Numero, Cliente, Articulo, Unidades, Fecha, Hora, PrecioFinal, Envio));
-                            break;
-                        }
-                    }
+    public static void pintarMenu() {
+        boolean salir = false;
+
+        do {
+            System.out.println("\n =========== GESTION DE PEDIDOS ===========\n");
+            System.out.println(" 1. Crear un pedido");
+            System.out.println(" 2. Eliminar un pedido");
+            System.out.println(" 3. Mostrar los pedidos");
+            System.out.println(" 4. Mostrar los pedidos pendientes");
+            System.out.println(" 5. Mostrar los pedidos enviados");
+            System.out.println(" 6. Volver");
+
+            int opcion = Integer.parseInt(teclado.nextLine());
+
+            switch (opcion) {
+                case 1:
+                    menuCrearPedido();
                     break;
-                
-            case '2':
-                    System.out.println("Numero");
-                        Numero=teclado.nextLine();
-                for (int i = 0; i < listaPedido.size(); i++) {
-                    if (Numero.equals(Pedido.getNumero())) {    
-                            listaPedido.remove(Pedido);
-                        }else{
-                    System.out.println("No existe el Pedido");
-                        }   
-                    }
-                break;
-                
-            case '3':
-                    System.out.println("Numero");
-                        Numero=teclado.nextLine();
-                for (int i = 0; i < listaPedido.size(); i++) {
-                    if (Numero.equals(Pedido.getNumero())) {    
-                    System.out.println("Listado de Pedidos (" + VentanaPedidos.Pedido.getNumero() + "):");                                      
-                        }else{
-                    System.out.println("No hay Pedidos");
-                        }   
-                    }
-                break;
-            
-            case '4':
-                    System.out.println("Numero");
-                        Numero=teclado.nextLine();
-                for (int i = 0; i < listaPedido.size(); i++) {
-                    if(Pedido.Envio == false) {
-                    System.out.println("Listado de Pedidos Pendientes (" + VentanaPedidos.Pedido.getNumero() + "):");                                      
-                        }else{
-                    System.out.println("No hay Pedidos Pendientes");
-                        }   
-                    }
-                break;
-                
-            case '5':
-                    System.out.println("Numero");
-                        Numero=teclado.nextLine();
-                for (int i = 0; i < listaPedido.size(); i++) {
-                    if(Pedido.Envio == true) {
-                    System.out.println("Listado de Pedidos Enviados (" + VentanaPedidos.Pedido.getNumero() + "):");                                      
-                        }else{
-                    System.out.println("No hay Pedidos Enviados");
-                        }   
-                    }
-                break;
-                      
-            case '6':
-                }
-                    } while (!salir);
-                }
+                case 2:
+                    //menuEliminarPedido();
+                    break;
+
+//                case 3:
+//                    
+//                    System.out.println("Numero");
+//                    Numero = teclado.nextLine();
+//                    for (int i = 0; i < listaPedido.size(); i++) {
+//                        if (Numero.equals(Pedido.getNumero())) {
+//                            System.out.println("Listado de Pedidos (" + VentanaPedidos.Pedido.getNumero() + "):");
+//                        } else {
+//                            System.out.println("No hay Pedidos");
+//                        }
+//                    }
+//                    break;
+//
+//                case 4:
+//                    System.out.println("Numero");
+//                    Numero = teclado.nextLine();
+//                    for (int i = 0; i < listaPedido.size(); i++) {
+//                        if (Pedido.Envio == false) {
+//                            System.out.println("Listado de Pedidos Pendientes (" + VentanaPedidos.Pedido.getNumero() + "):");
+//                        } else {
+//                            System.out.println("No hay Pedidos Pendientes");
+//                        }
+//                    }
+//                    break;
+//
+//                case '5':
+//                    System.out.println("Numero");
+//                    Numero = teclado.nextLine();
+//                    for (int i = 0; i < listaPedido.size(); i++) {
+//                        if (Pedido.Envio == true) {
+//                            System.out.println("Listado de Pedidos Enviados (" + VentanaPedidos.Pedido.getNumero() + "):");
+//                        } else {
+//                            System.out.println("No hay Pedidos Enviados");
+//                        }
+//                    }
+//                    break;
+//
+//                case '6':
+            }
+        } while (salir);
     }
-   
+
+    public static void menuCrearPedido() {
+        String numero;
+        String emailCliente;
+        int codigoArticulo;
+        int unidades;
+        LocalDate fecha;
+        LocalTime hora;
+        double precioFinal;
+        boolean envio = false;
+
+        System.out.println("Número pedido:");
+        numero = teclado.nextLine();
+        System.out.println("Introduce el mail del cliente:");
+        emailCliente = teclado.nextLine();
+
+        Cliente cli = ClienteControlador.getCliente(emailCliente);
+        if (cli == null) {
+            System.out.println("El cliente no existe y debes crearlo:");
+            VentanaClientes.menuAnadirCliente();
+            cli = ClienteControlador.getCliente(emailCliente);
+
+        } else {
+            System.out.println("Se ha encontrado un cliente con este email y se le asociará el pedido.");
+            cli = ClienteControlador.getCliente(emailCliente);
+        }
+
+        System.out.println("Introduce el código del artículo");
+        codigoArticulo = Integer.parseInt(teclado.nextLine());
+
+        Articulo art = ArticuloControlador.getArticulo(codigoArticulo);
+        if (art == null) {
+            System.out.println("El artículo no existe y debes crearlo:");
+            VentanaArticulos.menuAnadirArticulo();
+            art = ArticuloControlador.getArticulo(codigoArticulo);
+
+        } else {
+            System.out.println("Se ha encontrado un articulo con este código y se le asociará el pedido.");
+            art = ArticuloControlador.getArticulo(codigoArticulo);
+        }
+
+        System.out.println("¿Cuántas unidades?");
+        unidades = teclado.nextInt();
+        fecha = LocalDate.now();
+        hora = LocalTime.now();
+        PedidoControlador.anadirPedido(unidades, cli, art, unidades, fecha, hora);
+    }
+
+}
+
+//    }

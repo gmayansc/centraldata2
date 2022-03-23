@@ -1,34 +1,53 @@
 package edu.uoc.centraldata.modelo;
+
 import java.util.ArrayList;
 
-public class ListaArticulos extends ListaDatos <Articulo> {
+public class ListaArticulos extends ListaDatos<Articulo> {
 
-    public static int bol = 0;
-    public static int i=0;
-
-   
- 
+    @Override
     public void agregar(Articulo articulo) {
-        if (-1!=existeArticulo(articulo.getCodigo())) {
+        if (!existeArticulo(articulo)) {
             this.lista.add(articulo);
-            System.out.println("El Articulo ha sido Creado");
         } else {
             System.out.println("Este Articulo ya existe");
         }
     }
-    
-    public int existeArticulo(int codigo) {
-        for (i = 0; i < this.lista.size(); i++) {
-            Articulo art =  this.lista.get(i);
-            if (codigo == art.getCodigo()) {
-                bol = i;
-            } else {
-                bol = -1;
+
+    public void borrarArticulo(int codigo) {
+        Articulo art = getArticulo(codigo);
+        if (existeArticulo(art)) {
+            this.lista.remove(art);
+        } else {
+            System.out.println("El artículo no existe y, por tanto, no se puede borrar.");
+        }
+    }
+
+    public boolean existeArticulo(Articulo art) {
+
+        if (art != null) {
+
+            for (int i = 0; i < this.lista.size(); i++) {
+                Articulo art2 = this.lista.get(i);
+                if (art2.getCodigo() == art.getCodigo()) {
+                    return true;
+                }
             }
         }
-        return bol;
+        return false;
     }
-    /*public Articulo Articulo;
+
+    public Articulo getArticulo(int codigo) {
+        for (int i = 0; i < this.lista.size(); i++) {
+            Articulo art = this.lista.get(i);
+            if (art.getCodigo() == codigo) {
+                return art;
+            }
+        }
+        return null;
+    }
+
+}
+/*public Articulo Articulo;
             
     public ArrayList<T> listaArticulo;
     
@@ -70,5 +89,4 @@ public class ListaArticulos extends ListaDatos <Articulo> {
             System.out.println("No existe el Articulos");
         }    
     }
-*/
-}
+ */

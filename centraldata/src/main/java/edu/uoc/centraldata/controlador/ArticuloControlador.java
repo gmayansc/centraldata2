@@ -8,7 +8,7 @@ import java.util.Iterator;
 
 public class ArticuloControlador {
 
-    public static ListaDatos<Articulo> listaArticulos = new ListaDatos();
+    public static ListaArticulos listaArticulos = new ListaArticulos();
 
     public static void cargarArticulos() {
         Articulo art = new Articulo(1234, "Mochila Verde", 10.54, 1.31, 20);
@@ -19,10 +19,9 @@ public class ArticuloControlador {
         listaArticulos.agregar(art1);
         listaArticulos.agregar(art2);
         listaArticulos.agregar(art3);
-
     }
 
-    public static void anadirArticulo(int codigo, String descripcion, float precio, float gastosEnvio, int tiempo) {
+    public static void anadirArticulo(int codigo, String descripcion, double precio, double gastosEnvio, int tiempo) {
 
         //INSTANCIAMOS UN OBJETO ARTÍCULO
         Articulo art = new Articulo(codigo, descripcion, precio, gastosEnvio, tiempo);
@@ -37,15 +36,20 @@ public class ArticuloControlador {
     }
     
     public static void eliminarArticulo(int codigo){
-        if (existeArticulo(codigo)) {
-            Articulo art = (Articulo) listaArticulos.getAt(codigo);
-            listaArticulos.borrar(art);
-            System.out.print("Articulo eliminado correctamente");
-        }
-        else {
-            System.out.println("No existe el Articulo");
-        }
+        listaArticulos.borrarArticulo(codigo);
     }
+    
+    public static Articulo getArticulo(int codigo) {
+        for (int i = 0; i < listaArticulos.getSize(); i++) {
+            Articulo art = listaArticulos.getAt(i);
+            if (codigo == art.getCodigo()) {
+                return art;
+            }
+        }
+        return null;
+    }
+    
+
 }
 
    /*public int exist(int codigo) {

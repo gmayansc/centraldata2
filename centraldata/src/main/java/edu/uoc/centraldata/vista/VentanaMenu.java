@@ -1,13 +1,13 @@
 package edu.uoc.centraldata.vista;
 
 import edu.uoc.centraldata.controlador.*;
-import edu.uoc.centraldata.modelo.*;
 import java.util.Scanner;
 
 public class VentanaMenu {
 
     public static void iniciarVista() {
         ArticuloControlador.cargarArticulos();
+        ClienteControlador.cargarClientes();
         pintarMenu();
     }
 
@@ -36,7 +36,7 @@ public class VentanaMenu {
                     VentanaClientes.pintarMenu();
                     break;
                 case 3:
-                    VentanaClientes.pintarMenu();
+                    VentanaPedidos.pintarMenu();
                     break;
                 case 4:
                     salir = true;
