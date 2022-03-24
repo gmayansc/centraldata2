@@ -63,8 +63,10 @@ public abstract class Cliente {
         return "Cliente{" + "Nombre=" + nombre + ", Domicilio=" + domicilio + ", NIF=" + NIF + ", Email=" + email + ", Tipo=" + tipo + "}";
     }
 
-    //public float calcAnual();
-    
-    //public float descuentoEnv();
+    public abstract String tipoCliente();
+
+    public abstract float calcAnual();
+
+    public abstract float descuentoEnv();
     
 }  

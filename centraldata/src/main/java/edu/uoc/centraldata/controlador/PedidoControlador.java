@@ -18,6 +18,7 @@ public class PedidoControlador {
         Pedido ped3 = new Pedido(0003, listaClientes.getAt(2), listaArticulos.getAt(2), 2, LocalDate.now(), LocalTime.now());
         Pedido ped4 = new Pedido(0004, listaClientes.getAt(2), listaArticulos.getAt(3), 2, LocalDate.now(), LocalTime.now());
 
+        ped2.setEnvio(true);
         listaPedidos.agregar(ped);
         listaPedidos.agregar(ped2);
         listaPedidos.agregar(ped3);
@@ -33,7 +34,7 @@ public class PedidoControlador {
         System.out.println(ped);
     }
 
-    public static void eliminarPedido(int codigo) {
+    public static void eliminarPedido(int codigo){
         listaPedidos.borrarPedido(codigo);
     }
 
