@@ -1,7 +1,5 @@
 package edu.uoc.centraldata.modelo;
 
-import java.util.ArrayList;
-
 public class ListaClientes extends ListaDatos<Cliente> {
         
     @Override
