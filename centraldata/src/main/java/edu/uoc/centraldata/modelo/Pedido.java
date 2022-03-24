@@ -115,20 +115,20 @@ public class Pedido {
     @Override
     public String toString() {
 
-        return "\n\nPEDIDO nº " + this.codigo + "\n"
+        return "\n\n****  PEDIDO nº " + this.codigo + "  ****\n"
                 + "Cliente          = " + this.Cliente.getNombre() + "\n"
                 + "Tipo             = " + this.Cliente.getTipo() + "\n"
                 + "Fecha del pedido = " + this.getFecha() + "\n"
                 + "Hora del pedido  = " + this.getHora() + "\n"
-                + "---------------------------\n"
+                + "-------------------------------------\n"
                 + "Producto         = " + this.Articulo.getDescripcion() + "\n"
                 + "Cantidad         = " + this.Unidades + "\n"
                 + "Precio producto  = " + this.Articulo.getPrecio() + "\n"
                 + "Gastos de Envío  = " + this.Articulo.getGastosEnvio() + "\n"
-                + "---------------------------\n"
-                + "Subtotal     = " + this.getSubtotal() + "\n"
-                + "---------------------------\n"
-                + "TOTAL     = " + this.getPrecioFinal() + "EUR\n";
+                + "-------------------------------------\n"
+                + "Subtotal         = " + this.getSubtotal() + "\n"
+                + "-------------------------------------\n"
+                + "TOTAL            = " + this.getPrecioFinal() + "EUR\n";
 
     }
 
