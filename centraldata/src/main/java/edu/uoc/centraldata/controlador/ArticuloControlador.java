@@ -11,10 +11,10 @@ public class ArticuloControlador {
     public static ListaArticulos listaArticulos = new ListaArticulos();
 
     public static void cargarArticulos() {
-        Articulo art = new Articulo(1234, "Mochila Verde", 10.54, 1.31, 20);
-        Articulo art1 = new Articulo(2324, "iPhone", 998.54, 6.31, 20);
-        Articulo art2 = new Articulo(2423, "Lápiz", 107.54, 1.31, 20);
-        Articulo art3 = new Articulo(3343, "Mochila Roja", 1077.54, 1.31, 20);
+        Articulo art = new Articulo(1234, "Mochila Verde", 10, 5, 20);
+        Articulo art1 = new Articulo(2324, "iPhone", 100, 5, 20);
+        Articulo art2 = new Articulo(2423, "Lápiz", 2, 5, 20);
+        Articulo art3 = new Articulo(3343, "Mochila Roja", 10, 5, 20);
         listaArticulos.agregar(art);
         listaArticulos.agregar(art1);
         listaArticulos.agregar(art2);
