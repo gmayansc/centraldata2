@@ -27,7 +27,6 @@ public class PedidoControlador {
 
     public static void anadirPedido(int numero, Cliente cli, Articulo art, int unidades, LocalDate fecha, LocalTime hora) {
         System.out.print("crear pedido");
-        //INSTANCIAMOS UN OBJETO ARTÍCULO
         Pedido ped = new Pedido(numero, cli, art, unidades, fecha, hora);
         listaPedidos.agregar(ped);
 
@@ -84,10 +83,3 @@ public class PedidoControlador {
             return listaPedidos.existePedido(num);
         }
 }
-
-//existePedido(Numero: int): boolean
-//añadirPedido(Numero: int, Cliente: Cliente, Articulo: Articulo, Unidades: int, Fecha: LocalDate, Hora: LocalDate, PrecioFinal: float): void
-//eliminarPedido(Pedido: Pedido): void
-//mostrarPedido(Pedido: Pedido): void
-//mostrarPedidoEnviado(Pedido: Pedido): void
-//mostrarPedidoNoEnviado(Pedido: Pedido): void

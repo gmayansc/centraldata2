@@ -51,23 +51,3 @@ public class ArticuloControlador {
     
 
 }
-
-   /*public int exist(int codigo) {
-        for (i = 0; i < this.listaArticulos.getSize(); i++) {
-            Articulo art =  this.listaArticulos.getAt(i);
-            if (codigo == art.getCodigo()) {
-                bol = i;
-            } else {
-                bol = -1;
-            }
-        }
-        return bol;
-    }
-    
-}
-
-//existeArticulo(Codigo: int): boolean
-//añadirArticulo(Codigo: int, Descripcion: String, Precio: float, GastosEnvio: float, Tiempo: int): void HECHO
-//eliminarArticulo(Articulo: Articulo): void 
-//mostrarArticulos(Articulo: Articulo): void HECHO*/
- 
