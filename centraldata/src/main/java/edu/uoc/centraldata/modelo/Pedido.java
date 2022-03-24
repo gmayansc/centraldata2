@@ -33,7 +33,7 @@ public class Pedido {
         double gastosEnvio = 0;
 
         if (this.Cliente.getTipo().equals("PREMIUM")) {
-            gastosEnvio = this.Articulo.getGastosEnvio() * 2.00;
+            gastosEnvio = this.Articulo.getGastosEnvio() * 0.8;
         } else {
             gastosEnvio = this.Articulo.getGastosEnvio();
         }
