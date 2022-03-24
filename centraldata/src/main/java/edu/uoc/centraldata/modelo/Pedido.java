@@ -14,7 +14,7 @@ public class Pedido {
     public double precioFinal;
     public boolean Envio;
 
-    public Pedido(int cod,  Cliente cli, Articulo art, int unidades, LocalDate Fecha, LocalTime Hora) {
+    public Pedido(int cod, Cliente cli, Articulo art, int unidades, LocalDate Fecha, LocalTime Hora) {
         this.codigo = cod;
         this.Cliente = cli;
         this.Articulo = art;
@@ -23,27 +23,34 @@ public class Pedido {
         this.Hora = Hora;
         this.Envio = false;
     }
-    
+
     public void setPrecioFinal(double precioFinal) {
         this.precioFinal = precioFinal;
     }
-    
-    
-    
-    public double getPrecioFinal(Cliente cli, Articulo art) {
+
+    public double getPrecioFinal() {
         double precio = 0;
         double gastosEnvio = 0;
-        
-        if (cli.getTipo().equals("PREMIUM")) {
-            gastosEnvio = art.getGastosEnvio() * 2.00;
+
+        if (this.Cliente.getTipo().equals("PREMIUM")) {
+            gastosEnvio = this.Articulo.getGastosEnvio() * 2.00;
         } else {
-            gastosEnvio = art.getGastosEnvio();
+            gastosEnvio = this.Articulo.getGastosEnvio();
         }
-        
-        precio = art.getPrecio() * this.Unidades + gastosEnvio;
+
+        precio = this.Articulo.getPrecio() * this.Unidades + gastosEnvio;
         return precio;
     }
+    public double getSubtotal() {
+        double precio = 0;
+        double gastosEnvio = 0;
 
+ 
+        gastosEnvio = this.Articulo.getGastosEnvio();
+
+        precio = this.Articulo.getPrecio() * this.Unidades + gastosEnvio;
+        return precio;
+    }
     public int getNumero() {
         return codigo;
     }
@@ -92,11 +99,6 @@ public class Pedido {
         this.Hora = Hora;
     }
 
-    public double getPrecioFinal() {
-        return precioFinal;
-    }
-
-
 
     public boolean isEnvio() {
         return Envio;
@@ -106,20 +108,28 @@ public class Pedido {
         this.Envio = Envio;
     }
 
-    boolean getEnvio() {
-        throw new UnsupportedOperationException("");
+    public boolean getEnvio() {
+        return this.Envio;
     }
 
     @Override
     public String toString() {
-       
-        return    "PEDIDO nº "+this.codigo+"\n"
-                + "Cliente="+ this.Cliente.getNombre()+"\n"
-                + "Producto= "+ this.Articulo.getDescripcion()+"\n"
-                + "Cantidad = " + this.Unidades+"\n"
-                + "Precio producto = " + this.Articulo.getPrecio()+"\n"
-                + "Precio FINAL = "+  this.getPrecioFinal(Cliente, Articulo)+"\n";
-              
+
+        return "\n\nPEDIDO nº " + this.codigo + "\n"
+                + "Cliente          = " + this.Cliente.getNombre() + "\n"
+                + "Tipo             = " + this.Cliente.getTipo() + "\n"
+                + "Fecha del pedido = " + this.getFecha() + "\n"
+                + "Hora del pedido  = " + this.getHora() + "\n"
+                + "---------------------------\n"
+                + "Producto         = " + this.Articulo.getDescripcion() + "\n"
+                + "Cantidad         = " + this.Unidades + "\n"
+                + "Precio producto  = " + this.Articulo.getPrecio() + "\n"
+                + "Gastos de Envío  = " + this.Articulo.getGastosEnvio() + "\n"
+                + "---------------------------\n"
+                + "Subtotal     = " + this.getSubtotal() + "\n"
+                + "---------------------------\n"
+                + "TOTAL     = " + this.getPrecioFinal() + "EUR\n";
+
     }
 
 }

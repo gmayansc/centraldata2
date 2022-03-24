@@ -68,6 +68,7 @@ public class VentanaClientes extends VentanaMenu {
         ClienteControlador.anadirCliente(NIF, nombre, domicilio, email, tipo);
         ClienteControlador.leerListaClientes();
     }
+    
         public static void menuEliminarCliente() {
         String email;
 

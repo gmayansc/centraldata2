@@ -4,9 +4,8 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class ListaPedidos extends ListaDatos<Pedido>{
-    
-           
+public class ListaPedidos extends ListaDatos<Pedido> {
+
     @Override
     public void agregar(Pedido ped) {
         if (!existePedido(ped.getNumero())) {
@@ -15,20 +14,21 @@ public class ListaPedidos extends ListaDatos<Pedido>{
             System.out.println("Este pedido ya está registrado");
         }
     }
-    
-        public boolean existePedido (int numero) {
+
+    public boolean existePedido(int numero) {
         Pedido ped = getPedido(numero);
         if (ped != null) {
-        for (int i = 0; i < this.lista.size(); i++) {
-            Pedido ped2 = this.lista.get(i);
-            if (ped2.getNumero() == ped.getNumero()) {
-                return true;
+            for (int i = 0; i < this.lista.size(); i++) {
+                Pedido ped2 = this.lista.get(i);
+                if (ped2.getNumero() == ped.getNumero()) {
+                    return true;
+                }
             }
-        }
         }
         return false;
     }
-            public Pedido getPedido(int numero) {
+
+    public Pedido getPedido(int numero) {
         for (int i = 0; i < this.lista.size(); i++) {
             Pedido ped = this.lista.get(i);
             if (numero == ped.getNumero()) {
@@ -37,8 +37,20 @@ public class ListaPedidos extends ListaDatos<Pedido>{
         }
         return null;
     }
-    
-            
+
+    public void borrarPedido(int codigo) {
+        Pedido ped = getPedido(codigo);
+        if (existePedido(ped.getNumero())) {
+            if (ped.getEnvio() == true) {
+                System.out.println("El pedido ya se ha enviado y, por tanto, no se puede borrar.");
+            } else {
+                this.lista.remove(ped);
+            }
+        } else {
+            System.out.println("El cliente no está registrado y, por tanto, no se puede borrar.");
+        }
+    }
+
 //    public ArrayList<T> listaPedido;
 //    
 //    private void inicializarValores() {

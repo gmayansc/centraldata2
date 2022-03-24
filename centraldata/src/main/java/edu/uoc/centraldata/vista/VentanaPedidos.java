@@ -30,47 +30,20 @@ public class VentanaPedidos extends VentanaMenu {
                     menuCrearPedido();
                     break;
                 case 2:
-                    //menuEliminarPedido();
+                    menuEliminarPedido();
                     break;
-
-//                case 3:
-//                    
-//                    System.out.println("Numero");
-//                    Numero = teclado.nextLine();
-//                    for (int i = 0; i < listaPedido.size(); i++) {
-//                        if (Numero.equals(Pedido.getNumero())) {
-//                            System.out.println("Listado de Pedidos (" + VentanaPedidos.Pedido.getNumero() + "):");
-//                        } else {
-//                            System.out.println("No hay Pedidos");
-//                        }
-//                    }
-//                    break;
-//
-//                case 4:
-//                    System.out.println("Numero");
-//                    Numero = teclado.nextLine();
-//                    for (int i = 0; i < listaPedido.size(); i++) {
-//                        if (Pedido.Envio == false) {
-//                            System.out.println("Listado de Pedidos Pendientes (" + VentanaPedidos.Pedido.getNumero() + "):");
-//                        } else {
-//                            System.out.println("No hay Pedidos Pendientes");
-//                        }
-//                    }
-//                    break;
-//
-//                case '5':
-//                    System.out.println("Numero");
-//                    Numero = teclado.nextLine();
-//                    for (int i = 0; i < listaPedido.size(); i++) {
-//                        if (Pedido.Envio == true) {
-//                            System.out.println("Listado de Pedidos Enviados (" + VentanaPedidos.Pedido.getNumero() + "):");
-//                        } else {
-//                            System.out.println("No hay Pedidos Enviados");
-//                        }
-//                    }
-//                    break;
-//
-//                case '6':
+                case 3:
+                    PedidoControlador.leerListaPedidos();
+                    break;
+                case 4:
+                    menuMostrarPendientes();
+                    break;
+                case 5:
+                    menuMostrarEnviados();
+                    break;
+                case 6:
+                    salir = true;
+                    break;
             }
         } while (salir);
     }
@@ -87,6 +60,12 @@ public class VentanaPedidos extends VentanaMenu {
 
         System.out.println("Número pedido:");
         numero = Integer.parseInt(teclado.nextLine());
+
+        while (PedidoControlador.existePedido(numero)) {
+            System.out.println("Ya existe un pedido con este número. Introduce otro número de pedido:");
+            numero = Integer.parseInt(teclado.nextLine());
+        }
+
         System.out.println("Introduce el mail del cliente:");
         emailCliente = teclado.nextLine();
 
@@ -118,10 +97,82 @@ public class VentanaPedidos extends VentanaMenu {
         unidades = Integer.parseInt(teclado.nextLine());
         fecha = LocalDate.now();
         hora = LocalTime.now();
-        System.out.print("Se envia al controlador "+ " " + numero +" "+ cli +" "+ art +" "+ unidades +" "+ fecha +" " + hora);
         PedidoControlador.anadirPedido(numero, cli, art, unidades, fecha, hora);
     }
 
-}
+    public static void menuEliminarPedido() {
+        int codigo;
 
-//    }
+        System.out.println("\n =========== ELIMINAR PEDIDO ===========\n");
+        System.out.println(" Introduce el código del pedido:");
+        codigo = Integer.parseInt(teclado.nextLine());
+
+        PedidoControlador.eliminarPedido(codigo);
+
+    }
+
+    public static void menuMostrarPendientes() {
+        boolean salir = false;
+
+        while (!salir) {
+            System.out.println("\n =========== PEDIDOS PENDIENTES ===========\n");
+            System.out.println(" 1. Mostrar todos");
+            System.out.println(" 2. Filtrar por cliente");
+            System.out.println(" 3. Volver");
+
+            int opcion = Integer.parseInt(teclado.nextLine());
+            String emailCliente;
+            Cliente cli;
+
+            switch (opcion) {
+                case 1:
+                    PedidoControlador.leerListaPedidosPendientes();
+                    break;
+                case 2:
+
+                    System.out.println("Introduce el email del cliente a filtrar:");
+                    emailCliente = teclado.nextLine();
+                    cli = ClienteControlador.getCliente(emailCliente);
+                    PedidoControlador.leerListaPedidosPendientesFiltros(cli);
+                    break;
+                case 3:
+                    salir = true;
+                    break;
+            }
+
+        }
+    }
+
+    public static void menuMostrarEnviados() {
+        boolean salir = false;
+
+        while (!salir) {
+            System.out.println("\n =========== PEDIDOS ENVIADOS ===========\n");
+            System.out.println(" 1. Mostrar todos");
+            System.out.println(" 2. Filtrar por cliente");
+            System.out.println(" 3. Volver");
+
+            int opcion = Integer.parseInt(teclado.nextLine());
+            String emailCliente;
+            Cliente cli;
+
+            switch (opcion) {
+                case 1:
+                    PedidoControlador.leerListaPedidosEnviados();
+                    break;
+                case 2:
+
+                    System.out.println("Introduce el email del cliente a filtrar:");
+                    emailCliente = teclado.nextLine();
+                    cli = ClienteControlador.getCliente(emailCliente);
+                    PedidoControlador.leerListaPedidosEnviadosFiltro(cli);
+                    break;
+                case 3:
+                    salir = true;
+                    break;
+            }
+
+        }
+    }
+
+}

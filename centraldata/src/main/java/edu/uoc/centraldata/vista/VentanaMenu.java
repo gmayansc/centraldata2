@@ -8,6 +8,7 @@ public class VentanaMenu {
     public static void iniciarVista() {
         ArticuloControlador.cargarArticulos();
         ClienteControlador.cargarClientes();
+        PedidoControlador.cargarPedidos();
         pintarMenu();
     }
 

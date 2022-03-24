@@ -66,6 +66,14 @@ public class ClienteControlador {
         }
         return null;
     }
+
+    public static ListaClientes getListaClientes() {
+        return listaClientes;
+    }
+    
+
+    
+    
 }
 
 //existeCliente(Email: String): boolean
