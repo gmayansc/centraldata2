@@ -24,27 +24,30 @@ public class VentanaMenu {
             System.out.println("2. Gestionar Clientes");
             System.out.println("3. Gestionar Pedidos");
             System.out.println("4. Salir de la aplicación");
-
             Scanner entrada = new Scanner(System.in);
-
-            int opcionMenu = entrada.nextInt();
-
-            switch (opcionMenu) {
-                case 1:
-                    VentanaArticulos.pintarMenu();
-                    break;
-                case 2:
-                    VentanaClientes.pintarMenu();
-                    break;
-                case 3:
-                    VentanaPedidos.pintarMenu();
-                    break;
-                case 4:
-                    salir = true;
-                    break;
-                default:
-                    break;
-            };
+            
+            try {
+                System.out.println("Introduce un número");
+                int opcionMenu = entrada.nextInt();
+                switch (opcionMenu) {
+                    case 1:
+                        VentanaArticulos.pintarMenu();
+                        break;
+                    case 2:
+                        VentanaClientes.pintarMenu();
+                        break;
+                    case 3:
+                        VentanaPedidos.pintarMenu();
+                        break;
+                    case 4:
+                        salir = true;
+                        break;
+                    default:
+                        break;
+                };
+            } catch (Exception e) {
+                System.out.println("Formato incorrecto.");
+            }
         }
     }
 }

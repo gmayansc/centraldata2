@@ -3,6 +3,7 @@ package edu.uoc.centraldata.controlador;
 import edu.uoc.centraldata.modelo.Articulo;
 import edu.uoc.centraldata.modelo.ListaArticulos;
 
+
 public class ArticuloControlador {
 
     public static ListaArticulos listaArticulos = new ListaArticulos();
