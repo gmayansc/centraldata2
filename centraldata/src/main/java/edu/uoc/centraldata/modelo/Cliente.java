@@ -2,6 +2,7 @@ package edu.uoc.centraldata.modelo;
 
 public abstract class Cliente {
     
+    public int idCliente;
     public String nombre;
     public String domicilio;
     public String NIF;
@@ -16,6 +17,14 @@ public abstract class Cliente {
         this.NIF = NIF;
         this.email = Email;
         this.tipo = Tipo;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String getNombre() {
