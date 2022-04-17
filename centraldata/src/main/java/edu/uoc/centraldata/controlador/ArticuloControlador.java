@@ -1,10 +1,8 @@
 package edu.uoc.centraldata.controlador;
 
-import edu.uoc.centraldata.modelo.ListaDatos;
 import edu.uoc.centraldata.modelo.Articulo;
 import edu.uoc.centraldata.modelo.ListaArticulos;
 
-import java.util.Iterator;
 
 public class ArticuloControlador {
 
