@@ -1,18 +1,25 @@
 package edu.uoc.centraldata.vista;
 
 import edu.uoc.centraldata.controlador.*;
+import edu.uoc.centraldata.dao.ClienteDAO;
+import edu.uoc.centraldata.dao.DAOException;
+import edu.uoc.centraldata.dao.mysql.MySQLClienteDAO;
+import edu.uoc.centraldata.modelo.Cliente;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class VentanaMenu {
 
-    public static void iniciarVista() {
+    public static void iniciarVista() throws SQLException, DAOException {
         ArticuloControlador.cargarArticulos();
         ClienteControlador.cargarClientes();
         PedidoControlador.cargarPedidos();
         pintarMenu();
     }
 
-    public static void pintarMenu() {
+    public static void pintarMenu() throws SQLException, DAOException {
         boolean salir = false;
 
         while (!salir) {
@@ -23,7 +30,8 @@ public class VentanaMenu {
             System.out.println("1. Gestionar Artículos");
             System.out.println("2. Gestionar Clientes");
             System.out.println("3. Gestionar Pedidos");
-            System.out.println("4. Salir de la aplicación");
+            System.out.println("4. Conexión de prueba con BBDD");
+            System.out.println("5. Salir de la aplicación");
 
             Scanner entrada = new Scanner(System.in);
 
@@ -40,6 +48,18 @@ public class VentanaMenu {
                     VentanaPedidos.pintarMenu();
                     break;
                 case 4:
+                    Connection conn = null;
+                    try {
+                        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/prueba", "root", "root");
+                        ClienteDAO dao = new MySQLClienteDAO(conn);
+                        Cliente c = dao.obtener(1);
+                        System.out.println(c.toString());
+                    } finally {
+                        if (conn != null) {
+                            conn.close();
+                        }
+                    }
+                case 5:
                     salir = true;
                     break;
                 default:
