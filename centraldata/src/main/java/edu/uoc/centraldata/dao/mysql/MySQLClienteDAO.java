@@ -22,11 +22,11 @@ import java.util.List;
  */
 public class MySQLClienteDAO implements ClienteDAO {
 
-    final String INSERT = "INSERT INTO centraldata.clientes(nombre, domicilio, NIF, email, tipo, cuota_anual, descuento_envio) VALUES (?,?,?,?,?,?,?,?)";
-    final String UPDATE = "UPDATE centraldata.clientes SET nombre = ?, domicilio = ?, NIF = ?, email = ?, tipo = ?, cuota_anual = ?, descuento_envio = ? WHERE id_cliente = ?";
-    final String DELETE = "DELETE FROM clientes WHERE id_cliente = ?";
-    final String GETALL = "SELECT * FROM centraldata.clientes";
-    final String GETONE = "SELECT * FROM centraldata.clientes WHERE id_cliente = ?";
+    final String INSERT = "INSERT INTO edu.uoc.centraldata.Cliente(idCliente, nombre, domicilio, NIF, email, tipo) VALUES (?,?,?,?,?,?,?,?)";
+    final String UPDATE = "UPDATE edu.uoc.centraldata.Cliente SET idCliente = ?, nombre = ?, domicilio = ?, NIF = ?, email = ?, tipo = ? WHERE email = ?";
+    final String DELETE = "DELETE FROM edu.uoc.centraldata.Cliente WHERE email = ?";
+    final String GETALL = "SELECT * FROM edu.uoc.centraldata.Cliente";
+    final String GETONE = "SELECT * FROM edu.uoc.centraldata.Cliente WHERE email = ?";
 
     private Connection conn;
 
@@ -58,21 +58,66 @@ public class MySQLClienteDAO implements ClienteDAO {
                 } catch (SQLException ex) {
                     throw new DAOException("Error en SQL", ex);
                 }
-
             }
         }
     }
 
     @Override
-    public void modificar(Cliente c) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void modificar(Cliente c) throws DAOException {
+        PreparedStatement stat = null;
+        try {
+            stat = conn.prepareStatement(UPDATE);
+            stat.setString(1, c.getNombre());
+            stat.setString(2, c.getDomicilio());
+            stat.setString(3, c.getNIF());
+            stat.setString(4, c.getEmail());
+            stat.setString(5, c.getTipo());
+            stat.setFloat(6, c.calcAnual());
+            stat.setFloat(7, c.descuentoEnv());
+        if (stat.executeUpdate() == 0) {
+                throw new DAOException("Puede que no se haya guardado");
+            };
+        } catch (SQLException ex) {
+            throw new DAOException("Error en SQL", ex);
+        } finally {
+            if (stat != null) {
+                try {
+                    stat.close();
+                } catch (SQLException ex) {
+                    throw new DAOException("Error en SQL", ex);
+                }
+            }
+        }
     }
-
+    
     @Override
-    public void eliminar(Cliente c) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void eliminar(Cliente c) throws DAOException{
+        PreparedStatement stat = null;
+        try {
+            stat = conn.prepareStatement(DELETE);
+            stat.setString(1, c.getNombre());
+            stat.setString(2, c.getDomicilio());
+            stat.setString(3, c.getNIF());
+            stat.setString(4, c.getEmail());
+            stat.setString(5, c.getTipo());
+            stat.setFloat(6, c.calcAnual());
+            stat.setFloat(7, c.descuentoEnv());
+        if (stat.executeUpdate() == 0) {
+                throw new DAOException("Puede que no se haya guardado");
+            };
+        } catch (SQLException ex) {
+            throw new DAOException("Error en SQL", ex);
+        } finally {
+            if (stat != null) {
+                try {
+                    stat.close();
+                } catch (SQLException ex) {
+                    throw new DAOException("Error en SQL", ex);
+                }
+            }
+        }
     }
-
+        
     private Cliente convertir(ResultSet rs) throws SQLException {
         String nombre = rs.getString("nombre");
         String domicilio = rs.getString("domicilio");
@@ -95,14 +140,13 @@ public class MySQLClienteDAO implements ClienteDAO {
     public List<Cliente> obtenerTodos() throws DAOException {
         PreparedStatement stat = null;
         ResultSet rs = null;
-        List<Cliente> clientes = new ArrayList<>();
-
+        List<Cliente> cliente = new ArrayList<>();
         try {
             stat = conn.prepareStatement(GETALL);
             stat.executeQuery();
 
             while (rs.next()) {
-                clientes.add(convertir(rs));
+                cliente.add(convertir(rs));
             }
         } catch (SQLException ex) {
             throw new DAOException("Error en SQL", ex);
@@ -123,7 +167,7 @@ public class MySQLClienteDAO implements ClienteDAO {
 
             }
         }
-        return clientes;
+        return cliente;
     }
 
     @Override
@@ -131,18 +175,15 @@ public class MySQLClienteDAO implements ClienteDAO {
         PreparedStatement stat = null;
         ResultSet rs = null;
         Cliente c = null;
-
         try {
             stat = conn.prepareStatement(GETONE);
             stat.setInt(1, id);
             rs = stat.executeQuery();
-
             if (rs.next()) {
                 c = convertir(rs);
             } else {
                 throw new DAOException("No se ha encontrado este cliente");
             }
-
         } catch (SQLException ex) {
             throw new DAOException("Error en SQL", ex);
         } finally {
@@ -159,7 +200,6 @@ public class MySQLClienteDAO implements ClienteDAO {
                 } catch (SQLException ex) {
                     throw new DAOException("Error en SQL", ex);
                 }
-
             }
         }
         return c;

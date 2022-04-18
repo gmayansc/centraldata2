@@ -14,7 +14,6 @@ public class TiendaOnline {
 
     public static void main(String[] args) throws SQLException, DAOException {
         VentanaMenu.iniciarVista();
-        
     }
 
 }
