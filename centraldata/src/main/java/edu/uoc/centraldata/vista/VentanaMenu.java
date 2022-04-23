@@ -3,7 +3,7 @@ package edu.uoc.centraldata.vista;
 import edu.uoc.centraldata.controlador.*;
 import edu.uoc.centraldata.dao.ClienteDAO;
 import edu.uoc.centraldata.dao.DAOException;
-import edu.uoc.centraldata.dao.mysql.MySQLClienteDAO;
+import edu.uoc.centraldata.mysql.MySQLClienteDAO;
 import edu.uoc.centraldata.modelo.Cliente;
 import java.sql.Connection;
 import java.sql.DriverManager;

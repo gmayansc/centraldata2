@@ -1,43 +1,45 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package edu.uoc.centraldata.dao.mysql;
 
-import edu.uoc.centraldata.dao.PedidoDAO;
-import edu.uoc.centraldata.modelo.Pedido;
+package edu.uoc.centraldata.hibernate;
+
 import edu.uoc.centraldata.dao.DAOException;
-import java.sql.Connection;
+import edu.uoc.centraldata.modelo.Pedido;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.SessionFactory;
 
-public class MySQLPedidoDAO implements PedidoDAO{
+public class HibernateDAOPedido {
+
+    private static final SessionFactory sessionFactory;
     
-    final String INSERT = "INSERT INTO edu.uoc.centraldata.Pedido(codigo, Cliente, Articulo, Unidades, Fecha, Hora, precioFinal, Envio) VALUES (?,?,?,?,?,?,?,?)";
-    final String UPDATE = "UPDATE edu.uoc.centraldata.Pedido SET codigo = ?, Cliente = ?, Articulo = ?, Unidades = ?, Fecha = ?, Hora = ?, precioFinal = ?, Envio = ? WHERE codigo = ?";
-    final String DELETE = "DELETE FROM edu.uoc.centraldata.Pedido WHERE codigo = ?";
-    final String GETALL = "SELECT * FROM edu.uoc.centraldata.Pedido";
-    final String GETONE = "SELECT * FROM edu.uoc.centraldata.Pedido WHERE codigo = ?";
-
-    private Connection conn;
-
-    public MySQLPedidoDAO(Connection conn) {
-        this.conn = conn;
+    static {
+        try {
+            sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
+        } catch (Throwable ex) {
+            System.err.println("Initial SessionFactory creation failed." + ex);
+            throw new ExceptionInInitializerError(ex);
+        }
     }
-
-    @Override
+    
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+    
     public void insertar(Pedido c) throws DAOException {
         PreparedStatement stat = null;
+        Session session = null;
+        Transaction transaction = null;
         try {
-            stat = conn.prepareStatement(INSERT);
+            session = NewHibernateUtil.getSessionFactory().openSession();
             if (stat.executeUpdate() == 0) {
                 throw new DAOException("Puede que no se haya guardado");
             };
         } catch (SQLException ex) {
             throw new DAOException("Error en SQL", ex);
+            transaction.rollback();
         } finally {
             if (stat != null) {
                 try {
@@ -49,16 +51,18 @@ public class MySQLPedidoDAO implements PedidoDAO{
         }
     }
     
-    @Override
     public void modificar(Pedido c) throws DAOException {
         PreparedStatement stat = null;
+        Session session = null;
+        Transaction transaction = null;
         try {
-            stat = conn.prepareStatement(UPDATE);
+            session = NewHibernateUtil.getSessionFactory().openSession();
             if (stat.executeUpdate() == 0) {
                 throw new DAOException("Puede que no se haya guardado");
             };
         } catch (SQLException ex) {
             throw new DAOException("Error en SQL", ex);
+            transaction.rollback();
         } finally {
             if (stat != null) {
                 try {
@@ -70,16 +74,18 @@ public class MySQLPedidoDAO implements PedidoDAO{
         }
     }
     
-    @Override
     public void eliminar(Pedido c) throws DAOException {
                 PreparedStatement stat = null;
+                Session session = null;
+                Transaction transaction = null;
         try {
-            stat = conn.prepareStatement(DELETE);
+            session = NewHibernateUtil.getSessionFactory().openSession();
             if (stat.executeUpdate() == 0) {
                 throw new DAOException("Puede que no se haya guardado");
             };
         } catch (SQLException ex) {
             throw new DAOException("Error en SQL", ex);
+            transaction.rollback();
         } finally {
             if (stat != null) {
                 try {
@@ -91,13 +97,14 @@ public class MySQLPedidoDAO implements PedidoDAO{
         }
     }
     
-    @Override
     public List<Pedido> obtenerTodos() throws DAOException {
         PreparedStatement stat = null;
+        Session session = null;
+        Transaction transaction = null;
         ResultSet rs = null;
         List<Pedido> pedido = new ArrayList<>();
         try {
-            stat = conn.prepareStatement(GETALL);
+            session = NewHibernateUtil.getSessionFactory().openSession();
             stat.executeQuery();
         } catch (SQLException ex) {
             throw new DAOException("Error en SQL", ex);
@@ -107,6 +114,7 @@ public class MySQLPedidoDAO implements PedidoDAO{
                     rs.close();
                 } catch (SQLException ex) {
                     throw new DAOException("Error en SQL", ex);
+                    transaction.rollback();
                 }
             }
             if (stat != null) {
@@ -120,16 +128,18 @@ public class MySQLPedidoDAO implements PedidoDAO{
         return pedido;
     }
     
-    @Override
     public Pedido obtener(Integer id) throws DAOException {
         PreparedStatement stat = null;
+        Session session = null;
+        Transaction transaction = null;
         ResultSet rs = null;
         Pedido c = null;
         try {
-            stat = conn.prepareStatement(GETONE);
+            session = NewHibernateUtil.getSessionFactory().openSession();
             stat.setInt(1, id);
         } catch (SQLException ex) {
             throw new DAOException("Error en SQL", ex);
+            transaction.rollback();
         } finally {
             if (rs != null) {
                 try {

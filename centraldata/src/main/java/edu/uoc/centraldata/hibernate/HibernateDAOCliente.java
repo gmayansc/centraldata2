@@ -1,44 +1,41 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package edu.uoc.centraldata.dao.mysql;
 
-import edu.uoc.centraldata.dao.ClienteDAO;
+package edu.uoc.centraldata.hibernate;
+
 import edu.uoc.centraldata.dao.DAOException;
 import edu.uoc.centraldata.modelo.Cliente;
 import edu.uoc.centraldata.modelo.ClienteEstandard;
 import edu.uoc.centraldata.modelo.ClientePremium;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.SessionFactory;
 
-/**
- *
- * @author gerardmayans
- */
-public class MySQLClienteDAO implements ClienteDAO {
+public class HibernateDAOCliente {
 
-    final String INSERT = "INSERT INTO edu.uoc.centraldata.Cliente(idCliente, nombre, domicilio, NIF, email, tipo) VALUES (?,?,?,?,?,?,?,?)";
-    final String UPDATE = "UPDATE edu.uoc.centraldata.Cliente SET idCliente = ?, nombre = ?, domicilio = ?, NIF = ?, email = ?, tipo = ? WHERE email = ?";
-    final String DELETE = "DELETE FROM edu.uoc.centraldata.Cliente WHERE email = ?";
-    final String GETALL = "SELECT * FROM edu.uoc.centraldata.Cliente";
-    final String GETONE = "SELECT * FROM edu.uoc.centraldata.Cliente WHERE email = ?";
-
-    private Connection conn;
-
-    public MySQLClienteDAO(Connection conn) {
-        this.conn = conn;
+    private static final SessionFactory sessionFactory;
+    
+    static {
+        try {
+            sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
+        } catch (Throwable ex) {
+            System.err.println("Initial SessionFactory creation failed." + ex);
+            throw new ExceptionInInitializerError(ex);
+        }
     }
-
-    @Override
+    
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+    
     public void insertar(Cliente c) throws DAOException {
         PreparedStatement stat = null;
+        Session session = null;
+        Transaction transaction = null;
         try {
-            stat = conn.prepareStatement(INSERT);
+            session = NewHibernateUtil.getSessionFactory().openSession();
             stat.setString(1, c.getNombre());
             stat.setString(2, c.getDomicilio());
             stat.setString(3, c.getNIF());
@@ -51,6 +48,7 @@ public class MySQLClienteDAO implements ClienteDAO {
             };
         } catch (SQLException ex) {
             throw new DAOException("Error en SQL", ex);
+            transaction.rollback();
         } finally {
             if (stat != null) {
                 try {
@@ -62,11 +60,12 @@ public class MySQLClienteDAO implements ClienteDAO {
         }
     }
 
-    @Override
     public void modificar(Cliente c) throws DAOException {
         PreparedStatement stat = null;
+        Session session = null;
+        Transaction transaction = null;
         try {
-            stat = conn.prepareStatement(UPDATE);
+            session = NewHibernateUtil.getSessionFactory().openSession();
             stat.setString(1, c.getNombre());
             stat.setString(2, c.getDomicilio());
             stat.setString(3, c.getNIF());
@@ -79,6 +78,7 @@ public class MySQLClienteDAO implements ClienteDAO {
             };
         } catch (SQLException ex) {
             throw new DAOException("Error en SQL", ex);
+            transaction.rollback();
         } finally {
             if (stat != null) {
                 try {
@@ -90,11 +90,12 @@ public class MySQLClienteDAO implements ClienteDAO {
         }
     }
     
-    @Override
     public void eliminar(Cliente c) throws DAOException{
         PreparedStatement stat = null;
+        Session session = null;
+        Transaction transaction = null;
         try {
-            stat = conn.prepareStatement(DELETE);
+            session = NewHibernateUtil.getSessionFactory().openSession();
             stat.setString(1, c.getNombre());
             stat.setString(2, c.getDomicilio());
             stat.setString(3, c.getNIF());
@@ -107,6 +108,7 @@ public class MySQLClienteDAO implements ClienteDAO {
             };
         } catch (SQLException ex) {
             throw new DAOException("Error en SQL", ex);
+            transaction.rollback();
         } finally {
             if (stat != null) {
                 try {
@@ -119,6 +121,9 @@ public class MySQLClienteDAO implements ClienteDAO {
     }
         
     private Cliente convertir(ResultSet rs) throws SQLException {
+        Session session = null;
+        Transaction transaction = null;
+        session = NewHibernateUtil.getSessionFactory().openSession();
         String nombre = rs.getString("nombre");
         String domicilio = rs.getString("domicilio");
         String NIF = rs.getString("NIF");
@@ -136,9 +141,11 @@ public class MySQLClienteDAO implements ClienteDAO {
         return cliente;
     }
 
-    @Override
     public List<Cliente> obtenerTodos() throws DAOException {
         PreparedStatement stat = null;
+        Session session = null;
+        Transaction transaction = null;
+        session = NewHibernateUtil.getSessionFactory().openSession();
         ResultSet rs = null;
         List<Cliente> cliente = new ArrayList<>();
         try {
@@ -150,6 +157,7 @@ public class MySQLClienteDAO implements ClienteDAO {
             }
         } catch (SQLException ex) {
             throw new DAOException("Error en SQL", ex);
+            transaction.rollback();
         } finally {
             if (rs != null) {
                 try {
@@ -170,9 +178,11 @@ public class MySQLClienteDAO implements ClienteDAO {
         return cliente;
     }
 
-    @Override
     public Cliente obtener(Integer id) throws DAOException {
         PreparedStatement stat = null;
+        Session session = null;
+        Transaction transaction = null;
+        session = NewHibernateUtil.getSessionFactory().openSession();
         ResultSet rs = null;
         Cliente c = null;
         try {
@@ -186,6 +196,7 @@ public class MySQLClienteDAO implements ClienteDAO {
             }
         } catch (SQLException ex) {
             throw new DAOException("Error en SQL", ex);
+            transaction.rollback();
         } finally {
             if (rs != null) {
                 try {
