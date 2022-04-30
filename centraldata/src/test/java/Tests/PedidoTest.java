@@ -24,7 +24,7 @@ public class PedidoTest {
     
     //TEST INCORRECTO PARA REPLICAR UN ERROR
     public void testGetEnvio() {
-        assertFalse(this.ped.getEnvio());
+        assertTrue(this.ped.getEnvio());
     }
     
         @Test
