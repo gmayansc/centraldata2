@@ -1,17 +1,44 @@
 package edu.uoc.centraldata.modelo;
 
-public class Articulo {
-	
+import java.io.Serializable;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "articulos")
+public class Articulo implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_articulo")
     public int Codigo;
+
+    @Column(name = "descripcion")
     public String Descripcion;
+    @Column(name = "precio")
     public double Precio;
+    @Column(name = "envio")
     public double GastosEnvio;
+    @Column(name = "tiempo")
     public int Tiempo;
     
-    public Articulo(){};
+    /*@Column(name="articulos_asd")
+    @OneToMany(mappedBy = "articulo", cascade = CascadeType.ALL)
+    private Pedido pedido;*/
 
-    public Articulo(int Codigo, String Descripcion, double Precio, double GastosEnvio, int Tiempo) {
-        this.Codigo = Codigo;
+    public Articulo() {
+    }
+
+    ;
+
+    public Articulo(String Descripcion, double Precio, double GastosEnvio, int Tiempo) {
         this.Descripcion = Descripcion;
         this.Precio = Precio;
         this.GastosEnvio = GastosEnvio;
@@ -62,5 +89,5 @@ public class Articulo {
     public String toString() {
         return "Articulo{" + "Codigo=" + Codigo + ", Descripcion=" + Descripcion + ", Precio=" + Precio + ", GastosEnvio=" + GastosEnvio + ", Tiempo=" + Tiempo + '}';
     }
-    
+
 }

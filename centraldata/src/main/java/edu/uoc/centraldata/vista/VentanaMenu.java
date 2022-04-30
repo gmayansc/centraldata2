@@ -13,9 +13,6 @@ import java.util.Scanner;
 public class VentanaMenu {
 
     public static void iniciarVista() throws SQLException, DAOException {
-        ArticuloControlador.cargarArticulos();
-        ClienteControlador.cargarClientes();
-        PedidoControlador.cargarPedidos();
         pintarMenu();
     }
 
@@ -47,18 +44,7 @@ public class VentanaMenu {
                 case 3:
                     VentanaPedidos.pintarMenu();
                     break;
-                case 4:
-                    Connection conn = null;
-                    try {
-                        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/prueba", "root", "root");
-                        ClienteDAO dao = new MySQLClienteDAO(conn);
-                        Cliente c = dao.obtener(1);
-                        System.out.println(c.toString());
-                    } finally {
-                        if (conn != null) {
-                            conn.close();
-                        }
-                    }
+                
                 case 5:
                     salir = true;
                     break;

@@ -1,17 +1,49 @@
 package edu.uoc.centraldata.modelo;
 
-public abstract class Cliente {
-    
+import java.io.Serializable;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "clientes")
+public abstract class Cliente implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_cliente")
     public int idCliente;
+
+    @Column(name = "nombre")
     public String nombre;
+
+    @Column(name = "domicilio")
     public String domicilio;
+
+    @Column(name = "NIF")
     public String NIF;
+
+    @Column(name = "email")
     public String email;
+
+    @Column(name = "tipo")
     public String tipo;
     
-    public Cliente(){};
+    @OneToOne(mappedBy="Cliente", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Pedido pedido;
 
-    public Cliente(String NIF, String Nombre, String Domicilio,  String Email, String Tipo) {
+    public Cliente() {
+    }
+
+    ;
+
+    public Cliente(String NIF, String Nombre, String Domicilio, String Email, String Tipo) {
         this.nombre = Nombre;
         this.domicilio = Domicilio;
         this.NIF = NIF;
@@ -68,7 +100,7 @@ public abstract class Cliente {
     }
 
     @Override
-     public String toString() {
+    public String toString() {
         return "Cliente{" + "Nombre=" + nombre + ", Domicilio=" + domicilio + ", NIF=" + NIF + ", Email=" + email + ", Tipo=" + tipo + "}";
     }
 
@@ -77,5 +109,5 @@ public abstract class Cliente {
     public abstract float calcAnual();
 
     public abstract float descuentoEnv();
-    
-}  
+
+}

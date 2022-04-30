@@ -1,6 +1,7 @@
 package edu.uoc.centraldata.vista;
 
 import edu.uoc.centraldata.controlador.ArticuloControlador;
+import edu.uoc.centraldata.dao.DAOException;
 
 import java.util.Scanner;
 
@@ -9,7 +10,7 @@ public class VentanaArticulos extends VentanaMenu {
     static Scanner entrada = new Scanner(System.in);
     
 
-    public static void pintarMenu() {
+    public static void pintarMenu()  throws DAOException{
 
         boolean salir = false;
         while (!salir) {
@@ -26,10 +27,10 @@ public class VentanaArticulos extends VentanaMenu {
                     menuAnadirArticulo();
                     break;
                 case 2:
-                    menuEliminarArticulo();
+                   menuEliminarArticulo();
                     break;
                 case 3:
-                    ArticuloControlador.leerLista();
+                   // ArticuloControlador.leerLista();
                     break;
                 case 4:
                     salir = true;
@@ -38,7 +39,7 @@ public class VentanaArticulos extends VentanaMenu {
         }
     }
 
-    public static void menuAnadirArticulo() {
+    public static void menuAnadirArticulo() throws DAOException {
         int codigo;
         String descripcion;
         float precio;
@@ -46,8 +47,6 @@ public class VentanaArticulos extends VentanaMenu {
         int tiempo;
 
         System.out.println("\n =========== NUEVO ARTÍCULO ===========\n");
-        System.out.println(" Introduce el código del artículo:");
-        codigo = Integer.parseInt(entrada.nextLine());
         System.out.println(" Introduce la descripción del artículo:");
         descripcion = entrada.nextLine();
         System.out.println(" Introduce el precio:");
@@ -57,18 +56,19 @@ public class VentanaArticulos extends VentanaMenu {
         System.out.println(" Introduce el tiempo de preparación:");
         tiempo = Integer.parseInt(entrada.nextLine());
 
-        ArticuloControlador.anadirArticulo(codigo, descripcion, precio, gastosEnvio, tiempo);
+        ArticuloControlador.anadirArticulo(descripcion, precio, gastosEnvio, tiempo);
 
-    }
-;
+    };
+    
     public static void menuEliminarArticulo() {
         int codigo;
-
+        Articulo art;
+        
         System.out.println("\n =========== ELIMINAR ARTÍCULO ===========\n");
         System.out.println(" Introduce el código del artículo:");
         codigo = Integer.parseInt(entrada.nextLine());
-
-        ArticuloControlador.eliminarArticulo(codigo);
+        art = 
+        ArticuloControlador.eliminarArticulo(art);
 
     }
 }

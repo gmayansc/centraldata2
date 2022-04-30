@@ -2,33 +2,67 @@ package edu.uoc.centraldata.modelo;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "pedidos")
 public class Pedido {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_pedido")
     public int codigo;
+    
+    
+    @JoinColumn(name="id_cliente")
+    @OneToOne(fetch = FetchType.LAZY)
     public Cliente Cliente;
-    public Articulo Articulo;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pedido")
+    public Articulo articulo;
+    
+    @Column(name = "unidades")
     public int Unidades;
+    
+    @Column(name = "fecha")
     public LocalDate Fecha;
+    
+    @Column(name = "hora")
     public LocalTime Hora;
+    
+    @Column(name = "precio_final")
     public double precioFinal;
+    
+    @Column(name = "envio")
     public boolean Envio;
 
-    public Pedido(int cod, Cliente cli, Articulo art, int unidades, LocalDate Fecha, LocalTime Hora) {
-        this.codigo = cod;
+    public Pedido(Cliente cli, Articulo art, int unidades, LocalDate Fecha, LocalTime Hora) {
         this.Cliente = cli;
-        this.Articulo = art;
+        this.articulo = art;
         this.Unidades = unidades;
         this.Fecha = Fecha;
         this.Hora = Hora;
         this.Envio = false;
     }
+    
+    public Pedido(){};
 
     public void setPrecioFinal(double precioFinal) {
         this.precioFinal = precioFinal;
     }
 
-    public double getPrecioFinal() {
+    /*public double getPrecioFinal() {
         double precio = 0;
         double gastosEnvio = 0;
 
@@ -53,7 +87,7 @@ public class Pedido {
     }
     public int getNumero() {
         return codigo;
-    }
+    }*/
 
     public void setNumero(int numero) {
         this.codigo = numero;
@@ -67,13 +101,13 @@ public class Pedido {
         this.Cliente = Cliente;
     }
 
-    public Articulo getArticulo() {
+   /* public Articulo getArticulo() {
         return Articulo;
     }
 
     public void setArticulo(Articulo Articulo) {
         this.Articulo = Articulo;
-    }
+    }*/
 
     public int getUnidades() {
         return Unidades;
@@ -114,22 +148,9 @@ public class Pedido {
 
     @Override
     public String toString() {
-
-        return "\n\n****  PEDIDO nº " + this.codigo + "  ****\n"
-                + "Cliente          = " + this.Cliente.getNombre() + "\n"
-                + "Tipo             = " + this.Cliente.getTipo() + "\n"
-                + "Fecha del pedido = " + this.getFecha() + "\n"
-                + "Hora del pedido  = " + this.getHora() + "\n"
-                + "-------------------------------------\n"
-                + "Producto         = " + this.Articulo.getDescripcion() + "\n"
-                + "Cantidad         = " + this.Unidades + "\n"
-                + "Precio producto  = " + this.Articulo.getPrecio() + "\n"
-                + "Gastos de Envío  = " + this.Articulo.getGastosEnvio() + "\n"
-                + "-------------------------------------\n"
-                + "Subtotal         = " + this.getSubtotal() + "\n"
-                + "-------------------------------------\n"
-                + "TOTAL            = " + this.getPrecioFinal() + "EUR\n";
-
+        return "Pedido{" + "codigo=" + codigo + ", Cliente=" + Cliente + ", articulofalso="  + ", Unidades=" + Unidades + ", Fecha=" + Fecha + ", Hora=" + Hora + ", precioFinal=" + precioFinal + ", Envio=" + Envio + '}';
     }
+
+   
 
 }

@@ -4,6 +4,11 @@
     <groupId>edu.uoc.centraldata</groupId>
     <artifactId>centraldata</artifactId>
     <version>1.0-SNAPSHOT</version>
+        <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+                <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
     <packaging>jar</packaging>
     <repositories>
         <repository>
@@ -25,11 +30,20 @@
             <version>1.3</version>
             <scope>test</scope>
         </dependency>
+         <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.6.8.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.6.8.Final</version>
+        </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.23</version>
-            <scope>runtime</scope>
+            <version>8.0.28</version>
         </dependency>
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
@@ -57,9 +71,4 @@
             <version>SNAPSHOT</version>
         </dependency>
     </dependencies>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-    </properties>
 </project>
