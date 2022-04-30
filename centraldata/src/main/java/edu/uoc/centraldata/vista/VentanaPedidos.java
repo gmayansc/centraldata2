@@ -27,19 +27,19 @@ public class VentanaPedidos extends VentanaMenu {
 
             switch (opcion) {
                 case 1:
-                    menuCrearPedido();
+              //      menuCrearPedido();
                     break;
                 case 2:
-                    menuEliminarPedido();
+             //       menuEliminarPedido();
                     break;
                 case 3:
                     PedidoControlador.leerListaPedidos();
                     break;
                 case 4:
-                    menuMostrarPendientes();
+              //      menuMostrarPendientes();
                     break;
                 case 5:
-                    menuMostrarEnviados();
+               //     menuMostrarEnviados();
                     break;
                 case 6:
                     salir = true;
@@ -48,7 +48,7 @@ public class VentanaPedidos extends VentanaMenu {
         } while (salir);
     }
 
-    public static void menuCrearPedido() {
+   /* public static void menuCrearPedido() {
         int numero;
         String emailCliente;
         int codigoArticulo;
@@ -173,6 +173,6 @@ public class VentanaPedidos extends VentanaMenu {
             }
 
         }
-    }
+    }*/
 
 }

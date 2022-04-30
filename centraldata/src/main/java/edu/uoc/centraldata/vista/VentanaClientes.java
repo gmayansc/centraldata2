@@ -1,12 +1,14 @@
 package edu.uoc.centraldata.vista;
 import edu.uoc.centraldata.controlador.*;
+import edu.uoc.centraldata.dao.DAOException;
+import edu.uoc.centraldata.modelo.Cliente;
 import java.util.Scanner;
 
 public class VentanaClientes extends VentanaMenu {
 
     static Scanner teclado = new Scanner(System.in);
 
-    public static void pintarMenu() {
+    public static void pintarMenu() throws DAOException {
 
         boolean salir = false;
         while (!salir) {
@@ -43,7 +45,7 @@ public class VentanaClientes extends VentanaMenu {
         }
     }
 
-    public static void menuAnadirCliente() {
+    public static void menuAnadirCliente() throws DAOException {
         String nombre;
         String domicilio;
         String NIF;
@@ -66,16 +68,16 @@ public class VentanaClientes extends VentanaMenu {
             tipo = teclado.nextLine();
         }
         ClienteControlador.anadirCliente(NIF, nombre, domicilio, email, tipo);
-        ClienteControlador.leerListaClientes();
+      //  ClienteControlador.leerListaClientes();
     }
     
-        public static void menuEliminarCliente() {
+        public static void menuEliminarCliente() throws DAOException {
         String email;
 
 
         System.out.println("Introduce el mail del cliente a eliminar:");
         email = teclado.nextLine();
-        ClienteControlador.eliminarCliente(email);
+        ClienteControlador.eliminar(ClienteControlador.buscar(email));
     }
 
 }

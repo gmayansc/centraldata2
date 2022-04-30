@@ -14,7 +14,7 @@ public class VentanaMenu {
 
     public static void iniciarVista() throws SQLException, DAOException {
         ArticuloControlador.cargarArticulos();
-        ClienteControlador.cargarClientes();
+        //ClienteControlador.cargarClientes();
         PedidoControlador.cargarPedidos();
         pintarMenu();
     }

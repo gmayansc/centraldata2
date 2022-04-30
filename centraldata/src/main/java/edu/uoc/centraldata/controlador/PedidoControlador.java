@@ -7,22 +7,22 @@ import java.time.LocalTime;
 public class PedidoControlador {
 
     public static ListaPedidos listaPedidos = new ListaPedidos();
-    public static ListaClientes listaClientes = ClienteControlador.listaClientes;
+    //public static ListaClientes listaClientes = ClienteControlador.listaClientes;
     public static ListaArticulos listaArticulos = ArticuloControlador.listaArticulos;
 
     public static void cargarPedidos() {
 
+//
+//        Pedido ped = new Pedido(0001, listaClientes.getAt(0), listaArticulos.getAt(0), 2, LocalDate.now(), LocalTime.now());
+//        Pedido ped2 = new Pedido(0002, listaClientes.getAt(1), listaArticulos.getAt(2), 2, LocalDate.now(), LocalTime.now());
+//        Pedido ped3 = new Pedido(0003, listaClientes.getAt(2), listaArticulos.getAt(2), 2, LocalDate.now(), LocalTime.now());
+//        Pedido ped4 = new Pedido(0004, listaClientes.getAt(2), listaArticulos.getAt(3), 2, LocalDate.now(), LocalTime.now());
 
-        Pedido ped = new Pedido(0001, listaClientes.getAt(0), listaArticulos.getAt(0), 2, LocalDate.now(), LocalTime.now());
-        Pedido ped2 = new Pedido(0002, listaClientes.getAt(1), listaArticulos.getAt(2), 2, LocalDate.now(), LocalTime.now());
-        Pedido ped3 = new Pedido(0003, listaClientes.getAt(2), listaArticulos.getAt(2), 2, LocalDate.now(), LocalTime.now());
-        Pedido ped4 = new Pedido(0004, listaClientes.getAt(2), listaArticulos.getAt(3), 2, LocalDate.now(), LocalTime.now());
-
-        ped2.setEnvio(true);
-        listaPedidos.agregar(ped);
-        listaPedidos.agregar(ped2);
-        listaPedidos.agregar(ped3);
-        listaPedidos.agregar(ped4);
+//        ped2.setEnvio(true);
+//        listaPedidos.agregar(ped);
+//        listaPedidos.agregar(ped2);
+//        listaPedidos.agregar(ped3);
+//        listaPedidos.agregar(ped4);
     }
 
     public static void anadirPedido(int numero, Cliente cli, Articulo art, int unidades, LocalDate fecha, LocalTime hora) {
