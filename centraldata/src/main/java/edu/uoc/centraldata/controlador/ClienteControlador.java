@@ -19,8 +19,15 @@ public class ClienteControlador {
     }
 
     public static Cliente buscar(String email) {
-        Cliente cli = HibernateClienteDAO.getCliente(email);
-        return cli;
+        
+         Cliente cli = HibernateClienteDAO.getCliente(email);
+        
+         if(cli != null){
+             return cli;
+         } else {
+             return null;
+         }
+
     }
 
     public static void eliminar(Cliente c) throws DAOException {

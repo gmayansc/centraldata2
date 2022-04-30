@@ -13,9 +13,6 @@ import java.util.Scanner;
 public class VentanaMenu {
 
     public static void iniciarVista() throws SQLException, DAOException {
-        ArticuloControlador.cargarArticulos();
-        //ClienteControlador.cargarClientes();
-        PedidoControlador.cargarPedidos();
         pintarMenu();
     }
 

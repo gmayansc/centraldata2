@@ -2,7 +2,7 @@ package edu.uoc.centraldata.modelo;
 
 
 public class ListaPedidos extends ListaDatos<Pedido> {
-
+/*
     @Override
     public void agregar(Pedido ped) {
         if (!existePedido(ped.getNumero())) {
@@ -48,5 +48,5 @@ public class ListaPedidos extends ListaDatos<Pedido> {
         } else {
             System.out.println("El pedido no existe y no se puede borrar");
         }
-    }
+    }*/
 }

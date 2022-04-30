@@ -1,6 +1,7 @@
 package edu.uoc.centraldata.vista;
 
 import edu.uoc.centraldata.controlador.*;
+import edu.uoc.centraldata.dao.DAOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -11,7 +12,7 @@ public class VentanaPedidos extends VentanaMenu {
 
     static Scanner teclado = new Scanner(System.in);
 
-    public static void pintarMenu() {
+    public static void pintarMenu() throws DAOException {
         boolean salir = false;
 
         do {
@@ -27,13 +28,13 @@ public class VentanaPedidos extends VentanaMenu {
 
             switch (opcion) {
                 case 1:
-              //      menuCrearPedido();
+                    menuCrearPedido();
                     break;
                 case 2:
              //       menuEliminarPedido();
                     break;
                 case 3:
-                    PedidoControlador.leerListaPedidos();
+                    //PedidoControlador.leerListaPedidos();
                     break;
                 case 4:
               //      menuMostrarPendientes();
@@ -48,8 +49,8 @@ public class VentanaPedidos extends VentanaMenu {
         } while (salir);
     }
 
-   /* public static void menuCrearPedido() {
-        int numero;
+   public static void menuCrearPedido() throws DAOException {
+        
         String emailCliente;
         int codigoArticulo;
         int unidades;
@@ -57,50 +58,49 @@ public class VentanaPedidos extends VentanaMenu {
         LocalTime hora;
         double precioFinal;
         boolean envio = false;
+        Cliente cli;
 
-        System.out.println("Número pedido:");
-        numero = Integer.parseInt(teclado.nextLine());
-
-        while (PedidoControlador.existePedido(numero)) {
-            System.out.println("Ya existe un pedido con este número. Introduce otro número de pedido:");
-            numero = Integer.parseInt(teclado.nextLine());
-        }
 
         System.out.println("Introduce el mail del cliente:");
         emailCliente = teclado.nextLine();
 
-        Cliente cli = ClienteControlador.getCliente(emailCliente);
-        if (cli == null) {
-            System.out.println("El cliente no existe y debes crearlo:");
+        
+         cli = ClienteControlador.buscar(emailCliente);
+        
+         if(cli==null){
+          System.out.println("El cliente no existe y debes crearlo:");
             VentanaClientes.menuAnadirCliente();
-            cli = ClienteControlador.getCliente(emailCliente);
-
-        } else {
-            System.out.println("Se ha encontrado un cliente con este email y se le asociará el pedido.");
-            cli = ClienteControlador.getCliente(emailCliente);
-        }
+            cli = ClienteControlador.buscar(emailCliente);
+         } 
+        
+           
+        
 
         System.out.println("Introduce el código del artículo");
         codigoArticulo = Integer.parseInt(teclado.nextLine());
-
-        Articulo art = ArticuloControlador.getArticulo(codigoArticulo);
-        if (art == null) {
+        
+        // HAY QUE HACER PRIMERO TODA LA LOGICA DE ARTICULOS
+        // Articulo art = ArticuloControlador.getArticulo(codigoArticulo);
+        /*if (art == null) {
             System.out.println("El artículo no existe y debes crearlo:");
             VentanaArticulos.menuAnadirArticulo();
             art = ArticuloControlador.getArticulo(codigoArticulo);
         } else {
             System.out.println("Se ha encontrado un articulo con este código y se le asociará el pedido.");
             art = ArticuloControlador.getArticulo(codigoArticulo);
-        }
+        }*/
+        
+        //CREO ARTICULO PROVISIONAL
+        Articulo art = new Articulo("Apple iPhone", 799, 5, 2);
         System.out.println(art);
         System.out.println("¿Cuántas unidades?");
         unidades = Integer.parseInt(teclado.nextLine());
         fecha = LocalDate.now();
         hora = LocalTime.now();
-        PedidoControlador.anadirPedido(numero, cli, art, unidades, fecha, hora);
+        PedidoControlador.anadirPedido(cli, art, unidades, fecha, hora);
     }
 
-    public static void menuEliminarPedido() {
+    /*public static void menuEliminarPedido() {
         int codigo;
 
         System.out.println("\n =========== ELIMINAR PEDIDO ===========\n");

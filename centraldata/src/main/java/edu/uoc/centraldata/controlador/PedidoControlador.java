@@ -1,39 +1,26 @@
 package edu.uoc.centraldata.controlador;
 
+import edu.uoc.centraldata.dao.DAOException;
+import edu.uoc.centraldata.dao.hibernate.HibernatePedidoDAO;
 import edu.uoc.centraldata.modelo.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class PedidoControlador {
 
-    public static ListaPedidos listaPedidos = new ListaPedidos();
-    //public static ListaClientes listaClientes = ClienteControlador.listaClientes;
-    public static ListaArticulos listaArticulos = ArticuloControlador.listaArticulos;
-
-    public static void cargarPedidos() {
-
-//
-//        Pedido ped = new Pedido(0001, listaClientes.getAt(0), listaArticulos.getAt(0), 2, LocalDate.now(), LocalTime.now());
-//        Pedido ped2 = new Pedido(0002, listaClientes.getAt(1), listaArticulos.getAt(2), 2, LocalDate.now(), LocalTime.now());
-//        Pedido ped3 = new Pedido(0003, listaClientes.getAt(2), listaArticulos.getAt(2), 2, LocalDate.now(), LocalTime.now());
-//        Pedido ped4 = new Pedido(0004, listaClientes.getAt(2), listaArticulos.getAt(3), 2, LocalDate.now(), LocalTime.now());
-
-//        ped2.setEnvio(true);
-//        listaPedidos.agregar(ped);
-//        listaPedidos.agregar(ped2);
-//        listaPedidos.agregar(ped3);
-//        listaPedidos.agregar(ped4);
-    }
-
-    public static void anadirPedido(int numero, Cliente cli, Articulo art, int unidades, LocalDate fecha, LocalTime hora) {
+    public static void anadirPedido(Cliente cli, Articulo art, int unidades, LocalDate fecha, LocalTime hora) throws DAOException {
         System.out.print("crear pedido");
-        Pedido ped = new Pedido(numero, cli, art, unidades, fecha, hora);
-        listaPedidos.agregar(ped);
+        Pedido ped = new Pedido(cli, art, unidades, fecha, hora);
+        HibernatePedidoDAO.insertar(ped);
 
         System.out.println(ped);
     }
+    
+     public static boolean existePedido(int num){
+            return true;
+     }
 
-    public static void eliminarPedido(int codigo){
+    /*public static void eliminarPedido(int codigo){
         listaPedidos.borrarPedido(codigo);
     }
 
@@ -79,7 +66,5 @@ public class PedidoControlador {
         }
     }
     
-        public static boolean existePedido(int num){
-            return listaPedidos.existePedido(num);
-        }
+      */
 }

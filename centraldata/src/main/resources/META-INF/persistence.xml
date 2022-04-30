@@ -10,7 +10,7 @@ mapped to database tables. Database driver, location, userid and pw
         </description>
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>edu.uoc.centraldata.modelo.Cliente</class>
-
+<class>edu.uoc.centraldata.modelo.Pedido</class>
     <properties>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/centraldata"/>
