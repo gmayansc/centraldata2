@@ -9,8 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -28,8 +26,9 @@ public class Pedido {
     @OneToOne(fetch = FetchType.LAZY)
     public Cliente Cliente;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pedido")
+    
+    @JoinColumn(name = "articulo_id")
+    @OneToOne(fetch = FetchType.LAZY)
     public Articulo articulo;
     
     @Column(name = "unidades")
@@ -85,11 +84,12 @@ public class Pedido {
         precio = this.Articulo.getPrecio() * this.Unidades + gastosEnvio;
         return precio;
     }
-    public int getNumero() {
+*/
+    public int getCodigo() {
         return codigo;
-    }*/
+    }
 
-    public void setNumero(int numero) {
+    public void setCodigo(int numero) {
         this.codigo = numero;
     }
 
@@ -101,7 +101,8 @@ public class Pedido {
         this.Cliente = Cliente;
     }
 
-   /* public Articulo getArticulo() {
+   /*
+public Articulo getArticulo() {
         return Articulo;
     }
 
@@ -148,7 +149,7 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "Pedido{" + "codigo=" + codigo + ", Cliente=" + Cliente + ", articulofalso="  + ", Unidades=" + Unidades + ", Fecha=" + Fecha + ", Hora=" + Hora + ", precioFinal=" + precioFinal + ", Envio=" + Envio + '}';
+        return "Pedido{" + "codigo=" + codigo + ", " + Cliente + ", Unidades=" + Unidades + ", Fecha=" + Fecha + ", Hora=" + Hora + ", precioFinal=" + precioFinal + ", Envio=" + Envio + '}';
     }
 
    

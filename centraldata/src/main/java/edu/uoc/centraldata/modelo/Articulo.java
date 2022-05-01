@@ -4,11 +4,11 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,21 +18,25 @@ public class Articulo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_articulo")
-    public int Codigo;
+    private int Codigo;
 
     @Column(name = "descripcion")
-    public String Descripcion;
+    private String Descripcion;
     @Column(name = "precio")
-    public double Precio;
+    private double Precio;
     @Column(name = "envio")
-    public double GastosEnvio;
+    private double GastosEnvio;
     @Column(name = "tiempo")
-    public int Tiempo;
+    private int Tiempo;
+    
+
+    @OneToOne(mappedBy = "articulo", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Pedido pedido;
+    
     
     /*@Column(name="articulos_asd")
     @OneToMany(mappedBy = "articulo", cascade = CascadeType.ALL)
     private Pedido pedido;*/
-
     public Articulo() {
     }
 

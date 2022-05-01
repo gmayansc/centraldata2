@@ -4,16 +4,13 @@
  */
 package edu.uoc.centraldata.dao.hibernate;
 
-import edu.uoc.centraldata.dao.ClienteDAO;
 import edu.uoc.centraldata.dao.DAOException;
 import edu.uoc.centraldata.modelo.Cliente;
 import edu.uoc.centraldata.modelo.Pedido;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 /**
@@ -21,12 +18,8 @@ import javax.persistence.TypedQuery;
  * @author gerardmayans
  */
 public class HibernatePedidoDAO {
-
-    private static EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
-            .createEntityManagerFactory("centraldata");
-
     public static void insertar(Pedido p) throws DAOException {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+        EntityManager em = HibernateUtil.getEntityManagerFactory().createEntityManager();
         EntityTransaction et = null;
         try {
             et = em.getTransaction();
@@ -43,14 +36,14 @@ public class HibernatePedidoDAO {
         }
     }
 
-    /*public static void eliminar(Cliente c) throws DAOException {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+    public static void eliminar(Pedido p) throws DAOException {
+        EntityManager em = HibernateUtil.getEntityManagerFactory().createEntityManager();
         EntityTransaction et = null;
         try {
             et = em.getTransaction();
             et.begin();
-            em.find(Cliente.class, c.getIdCliente());
-            em.remove(em.contains(c) ? c : em.merge(c));
+            em.find(Cliente.class, p.getCodigo());
+            em.remove(em.contains(p) ? p : em.merge(p));
             et.commit();
         } catch (Exception ex) {
             if (et != null) {
@@ -62,19 +55,20 @@ public class HibernatePedidoDAO {
         }
     }
 
-    public static Cliente getCliente(String email) {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
-        String query = "SELECT p FROM Cliente p WHERE p.email = :email";
+    
+    public static Pedido getPedido(int id) {
+        EntityManager em = HibernateUtil.getEntityManagerFactory().createEntityManager();
+        String query = "SELECT p FROM Pedido p WHERE p.id = :id";
 
-        TypedQuery<Cliente> tq = em.createQuery(query, Cliente.class);
-        tq.setParameter("email", email);
+        TypedQuery<Pedido> tq = em.createQuery(query, Pedido.class);
+        tq.setParameter("id", id);
 
-        Cliente cli = null;
+        Pedido ped = null;
 
         try {
-            cli = tq.getSingleResult();
+            ped = tq.getSingleResult();
 
-            return cli;
+            return ped;
         } catch (NoResultException ex) {
             ex.printStackTrace();
             return null;
@@ -83,17 +77,18 @@ public class HibernatePedidoDAO {
         }
     }
 
-    public static void getAllClientes() {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
-        String strQuery = "SELECT p FROM Cliente p WHERE p.id IS NOT NULL";
+ 
+    public static void getAllPedidos() {
+        EntityManager em = HibernateUtil.getEntityManagerFactory().createEntityManager();
+        String strQuery = "SELECT p FROM Pedido p WHERE p.id IS NOT NULL";
 
-        TypedQuery<Cliente> tq = em.createQuery(strQuery, Cliente.class);
-        List<Cliente> clientes;
+        TypedQuery<Pedido> tq = em.createQuery(strQuery, Pedido.class);
+        List<Pedido> pedidos;
 
         try {
-            clientes = tq.getResultList();
+            pedidos = tq.getResultList();
 
-            clientes.forEach(cli -> System.out.println(cli.toString()));
+            pedidos.forEach(ped -> System.out.println(ped.toString()));
 
         } catch (NoResultException ex) {
             ex.printStackTrace();
@@ -102,18 +97,18 @@ public class HibernatePedidoDAO {
             em.close();
         }
     }
+    
+    public static void getPedidosEnviados(){
+                EntityManager em = HibernateUtil.getEntityManagerFactory().createEntityManager();
+        String strQuery = "SELECT p FROM Pedido p WHERE p.envio = 1";
 
-    public static void getAllEstandard() {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
-        String strQuery = "SELECT p FROM Cliente p WHERE p.tipo IS 'ESTANDARD'";
-
-        TypedQuery<Cliente> tq = em.createQuery(strQuery, Cliente.class);
-        List<Cliente> clientes;
+        TypedQuery<Pedido> tq = em.createQuery(strQuery, Pedido.class);
+        List<Pedido> pedidos;
 
         try {
-            clientes = tq.getResultList();
+            pedidos = tq.getResultList();
 
-            clientes.forEach(cli -> System.out.println(cli.toString()));
+            pedidos.forEach(ped -> System.out.println(ped.toString()));
 
         } catch (NoResultException ex) {
             ex.printStackTrace();
@@ -122,17 +117,18 @@ public class HibernatePedidoDAO {
             em.close();
         }
     }
-   public static void getAllPremium() {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
-        String strQuery = "SELECT p FROM Cliente p WHERE p.tipo IS 'PREMIUM'";
+    
+    public static void getPedidosPendientes(){
+                EntityManager em = HibernateUtil.getEntityManagerFactory().createEntityManager();
+        String strQuery = "SELECT p FROM Pedido p WHERE p.envio = 0";
 
-        TypedQuery<Cliente> tq = em.createQuery(strQuery, Cliente.class);
-        List<Cliente> clientes;
+        TypedQuery<Pedido> tq = em.createQuery(strQuery, Pedido.class);
+        List<Pedido> pedidos;
 
         try {
-            clientes = tq.getResultList();
+            pedidos = tq.getResultList();
 
-            clientes.forEach(cli -> System.out.println(cli.toString()));
+            pedidos.forEach(ped -> System.out.println(ped.toString()));
 
         } catch (NoResultException ex) {
             ex.printStackTrace();
@@ -140,5 +136,5 @@ public class HibernatePedidoDAO {
         } finally {
             em.close();
         }
-    }*/
+    }
 }

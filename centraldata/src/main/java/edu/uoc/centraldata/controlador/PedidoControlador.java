@@ -12,59 +12,34 @@ public class PedidoControlador {
         System.out.print("crear pedido");
         Pedido ped = new Pedido(cli, art, unidades, fecha, hora);
         HibernatePedidoDAO.insertar(ped);
-
         System.out.println(ped);
     }
-    
-     public static boolean existePedido(int num){
-            return true;
-     }
 
-    /*public static void eliminarPedido(int codigo){
-        listaPedidos.borrarPedido(codigo);
+    public static void eliminarPedido(Pedido ped) throws DAOException {
+        HibernatePedidoDAO.eliminar(ped);
     }
 
-    public static void leerListaPedidos() {
-        for (int i = 0; i < listaPedidos.getSize(); i++) {
-            System.out.println(listaPedidos.getAt(i).toString());
+    public static Pedido getPedido(int codigo) throws DAOException {
+        Pedido ped = HibernatePedidoDAO.getPedido(codigo);
+        if (ped == null) {
+            return null;
+        } else {
+            return ped;
         }
+    }
+
+    public static void leerLista() {
+        HibernatePedidoDAO.getAllPedidos();
     }
 
     public static void leerListaPedidosEnviados() {
-        for (int i = 0; i < listaPedidos.getSize(); i++) {
-            if (listaPedidos.getAt(i).getEnvio() == true) {
-                System.out.println(listaPedidos.getAt(i).toString());
-            }
-        }
+        HibernatePedidoDAO.getPedidosEnviados();
+
     }
 
     public static void leerListaPedidosPendientes() {
-        for (int i = 0; i < listaPedidos.getSize(); i++) {
-            if (listaPedidos.getAt(i).getEnvio() == false) {
-                System.out.println(listaPedidos.getAt(i).toString());
-            }
-        }
+        HibernatePedidoDAO.getPedidosPendientes();
+
     }
 
-    public static void leerListaPedidosEnviadosFiltro(Cliente cli) {
-        for (int i = 0; i < listaPedidos.getSize(); i++) {
-            if (listaPedidos.getAt(i).getEnvio() == true) {
-                if (listaPedidos.getAt(i).getCliente() == cli) {
-                    System.out.println(listaPedidos.getAt(i).toString());
-                }
-            }
-        }
-    }
-
-    public static void leerListaPedidosPendientesFiltros(Cliente cli) {
-        for (int i = 0; i < listaPedidos.getSize(); i++) {
-            if (listaPedidos.getAt(i).getEnvio() == false) {
-                if (listaPedidos.getAt(i).getCliente() == cli) {
-                    System.out.println(listaPedidos.getAt(i).toString());
-                }
-            }
-        }
-    }
-    
-      */
 }

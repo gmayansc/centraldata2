@@ -4,15 +4,12 @@
  */
 package edu.uoc.centraldata.dao.hibernate;
 
-import edu.uoc.centraldata.dao.ClienteDAO;
 import edu.uoc.centraldata.dao.DAOException;
 import edu.uoc.centraldata.modelo.Cliente;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 /**
@@ -21,11 +18,8 @@ import javax.persistence.TypedQuery;
  */
 public class HibernateClienteDAO {
 
-    private static EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
-            .createEntityManagerFactory("centraldata");
-
     public static void insertar(Cliente c) throws DAOException {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+        EntityManager em = HibernateUtil.getEntityManagerFactory().createEntityManager();
         EntityTransaction et = null;
         try {
             et = em.getTransaction();
@@ -43,7 +37,7 @@ public class HibernateClienteDAO {
     }
 
     public static void eliminar(Cliente c) throws DAOException {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+        EntityManager em = HibernateUtil.getEntityManagerFactory().createEntityManager();
         EntityTransaction et = null;
         try {
             et = em.getTransaction();
@@ -62,7 +56,7 @@ public class HibernateClienteDAO {
     }
 
     public static Cliente getCliente(String email) {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+        EntityManager em = HibernateUtil.getEntityManagerFactory().createEntityManager();
         String query = "SELECT p FROM Cliente p WHERE p.email = :email";
 
         TypedQuery<Cliente> tq = em.createQuery(query, Cliente.class);
@@ -83,7 +77,7 @@ public class HibernateClienteDAO {
     }
 
     public static void getAllClientes() {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+        EntityManager em = HibernateUtil.getEntityManagerFactory().createEntityManager();
         String strQuery = "SELECT p FROM Cliente p WHERE p.id IS NOT NULL";
 
         TypedQuery<Cliente> tq = em.createQuery(strQuery, Cliente.class);
@@ -103,7 +97,7 @@ public class HibernateClienteDAO {
     }
 
     public static void getAllEstandard() {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+        EntityManager em = HibernateUtil.getEntityManagerFactory().createEntityManager();
         String strQuery = "SELECT p FROM Cliente p WHERE p.tipo IS 'ESTANDARD'";
 
         TypedQuery<Cliente> tq = em.createQuery(strQuery, Cliente.class);
@@ -122,7 +116,7 @@ public class HibernateClienteDAO {
         }
     }
    public static void getAllPremium() {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+        EntityManager em = HibernateUtil.getEntityManagerFactory().createEntityManager();
         String strQuery = "SELECT p FROM Cliente p WHERE p.tipo IS 'PREMIUM'";
 
         TypedQuery<Cliente> tq = em.createQuery(strQuery, Cliente.class);

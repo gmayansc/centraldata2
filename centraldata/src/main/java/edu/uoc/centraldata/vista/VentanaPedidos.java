@@ -31,16 +31,16 @@ public class VentanaPedidos extends VentanaMenu {
                     menuCrearPedido();
                     break;
                 case 2:
-             //       menuEliminarPedido();
+                    menuEliminarPedido();
                     break;
                 case 3:
-                    //PedidoControlador.leerListaPedidos();
+                    PedidoControlador.leerLista();
                     break;
                 case 4:
-              //      menuMostrarPendientes();
+                    PedidoControlador.leerListaPedidosPendientes();
                     break;
                 case 5:
-               //     menuMostrarEnviados();
+                    PedidoControlador.leerListaPedidosEnviados();
                     break;
                 case 6:
                     salir = true;
@@ -49,8 +49,8 @@ public class VentanaPedidos extends VentanaMenu {
         } while (salir);
     }
 
-   public static void menuCrearPedido() throws DAOException {
-        
+    public static void menuCrearPedido() throws DAOException {
+
         String emailCliente;
         int codigoArticulo;
         int unidades;
@@ -59,58 +59,55 @@ public class VentanaPedidos extends VentanaMenu {
         double precioFinal;
         boolean envio = false;
         Cliente cli;
-
+        Articulo art;
 
         System.out.println("Introduce el mail del cliente:");
         emailCliente = teclado.nextLine();
 
-        
-         cli = ClienteControlador.buscar(emailCliente);
-        
-         if(cli==null){
-          System.out.println("El cliente no existe y debes crearlo:");
+        cli = ClienteControlador.buscar(emailCliente);
+
+        if (cli == null) {
+            System.out.println("El cliente no existe y debes crearlo:");
             VentanaClientes.menuAnadirCliente();
             cli = ClienteControlador.buscar(emailCliente);
-         } 
-        
-           
-        
+        }
 
         System.out.println("Introduce el código del artículo");
         codigoArticulo = Integer.parseInt(teclado.nextLine());
-        
-        // HAY QUE HACER PRIMERO TODA LA LOGICA DE ARTICULOS
-        // Articulo art = ArticuloControlador.getArticulo(codigoArticulo);
-        /*if (art == null) {
-            System.out.println("El artículo no existe y debes crearlo:");
-            VentanaArticulos.menuAnadirArticulo();
-            art = ArticuloControlador.getArticulo(codigoArticulo);
+
+        art = ArticuloControlador.getArticulo(codigoArticulo);
+
+        if (art == null) {
+            System.out.println("No se ha encontrado ningún artículo con este código.");
+            System.out.println("Crea primero ese artículo.");
         } else {
-            System.out.println("Se ha encontrado un articulo con este código y se le asociará el pedido.");
-            art = ArticuloControlador.getArticulo(codigoArticulo);
-        }*/
-        
-        //CREO ARTICULO PROVISIONAL
-        Articulo art = new Articulo("Apple iPhone", 799, 5, 2);
-        System.out.println(art);
-        System.out.println("¿Cuántas unidades?");
-        unidades = Integer.parseInt(teclado.nextLine());
-        fecha = LocalDate.now();
-        hora = LocalTime.now();
-        PedidoControlador.anadirPedido(cli, art, unidades, fecha, hora);
+            System.out.println("Articulo seleccionado : " + art.toString());
+            System.out.println("¿Cuántas unidades?");
+            unidades = Integer.parseInt(teclado.nextLine());
+            fecha = LocalDate.now();
+            hora = LocalTime.now();
+            PedidoControlador.anadirPedido(cli, art, unidades, fecha, hora);
+        }
+
     }
 
-    /*public static void menuEliminarPedido() {
+    public static void menuEliminarPedido() throws DAOException {
         int codigo;
+        Pedido ped;
 
         System.out.println("\n =========== ELIMINAR PEDIDO ===========\n");
         System.out.println(" Introduce el código del pedido:");
         codigo = Integer.parseInt(teclado.nextLine());
 
-        PedidoControlador.eliminarPedido(codigo);
-
+        ped = PedidoControlador.getPedido(codigo);
+        if (ped == null) {
+            System.out.println("No existe ningún pedido con este identificador.");
+        } else {
+            PedidoControlador.eliminarPedido(ped);
+        }
     }
 
+    /*
     public static void menuMostrarPendientes() {
         boolean salir = false;
 
@@ -174,5 +171,4 @@ public class VentanaPedidos extends VentanaMenu {
 
         }
     }*/
-
 }

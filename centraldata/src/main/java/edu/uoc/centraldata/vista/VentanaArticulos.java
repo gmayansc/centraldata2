@@ -2,15 +2,15 @@ package edu.uoc.centraldata.vista;
 
 import edu.uoc.centraldata.controlador.ArticuloControlador;
 import edu.uoc.centraldata.dao.DAOException;
+import edu.uoc.centraldata.modelo.Articulo;
 
 import java.util.Scanner;
 
 public class VentanaArticulos extends VentanaMenu {
 
     static Scanner entrada = new Scanner(System.in);
-    
 
-    public static void pintarMenu()  throws DAOException{
+    public static void pintarMenu() throws DAOException {
 
         boolean salir = false;
         while (!salir) {
@@ -27,10 +27,10 @@ public class VentanaArticulos extends VentanaMenu {
                     menuAnadirArticulo();
                     break;
                 case 2:
-                   menuEliminarArticulo();
+                    menuEliminarArticulo();
                     break;
                 case 3:
-                   // ArticuloControlador.leerLista();
+                    ArticuloControlador.leerLista();
                     break;
                 case 4:
                     salir = true;
@@ -40,7 +40,6 @@ public class VentanaArticulos extends VentanaMenu {
     }
 
     public static void menuAnadirArticulo() throws DAOException {
-        int codigo;
         String descripcion;
         float precio;
         float gastosEnvio;
@@ -58,17 +57,22 @@ public class VentanaArticulos extends VentanaMenu {
 
         ArticuloControlador.anadirArticulo(descripcion, precio, gastosEnvio, tiempo);
 
-    };
-    
-    public static void menuEliminarArticulo() {
+    }
+
+    public static void menuEliminarArticulo() throws DAOException {
         int codigo;
         Articulo art;
-        
+
         System.out.println("\n =========== ELIMINAR ARTÍCULO ===========\n");
         System.out.println(" Introduce el código del artículo:");
         codigo = Integer.parseInt(entrada.nextLine());
-        art = 
-        ArticuloControlador.eliminarArticulo(art);
-
+        art = ArticuloControlador.getArticulo(codigo);
+        if (art == null) {
+            System.out.println("No existe ningún artículo con este identificador.");
+        } else {
+            ArticuloControlador.eliminarArticulo(art);
+        }
     }
+
+
 }

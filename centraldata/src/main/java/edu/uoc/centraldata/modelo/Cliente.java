@@ -18,22 +18,22 @@ public abstract class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_cliente")
-    public int idCliente;
+    private int idCliente;
 
     @Column(name = "nombre")
-    public String nombre;
+    private String nombre;
 
     @Column(name = "domicilio")
-    public String domicilio;
+    private String domicilio;
 
     @Column(name = "NIF")
-    public String NIF;
+    private String NIF;
 
     @Column(name = "email")
-    public String email;
+    private String email;
 
     @Column(name = "tipo")
-    public String tipo;
+     String tipo;
     
     @OneToOne(mappedBy="Cliente", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Pedido pedido;

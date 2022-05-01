@@ -11,6 +11,7 @@ mapped to database tables. Database driver, location, userid and pw
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>edu.uoc.centraldata.modelo.Cliente</class>
 <class>edu.uoc.centraldata.modelo.Pedido</class>
+<class>edu.uoc.centraldata.modelo.Articulo</class>
     <properties>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/centraldata"/>
@@ -19,6 +20,7 @@ mapped to database tables. Database driver, location, userid and pw
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
       <property name="hibernate.show_sql" value="true"/>
       <property name="hibernate.hbm2ddl.auto" value="create"/>
+    <property name="javax.persistence.sql-load-script-source" value="/import.sql"/>
     </properties>
   </persistence-unit>
 </persistence>

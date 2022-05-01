@@ -1,12 +1,6 @@
 package edu.uoc.centraldata.vista;
 
-import edu.uoc.centraldata.controlador.*;
-import edu.uoc.centraldata.dao.ClienteDAO;
 import edu.uoc.centraldata.dao.DAOException;
-import edu.uoc.centraldata.dao.mysql.MySQLClienteDAO;
-import edu.uoc.centraldata.modelo.Cliente;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -27,8 +21,7 @@ public class VentanaMenu {
             System.out.println("1. Gestionar Artículos");
             System.out.println("2. Gestionar Clientes");
             System.out.println("3. Gestionar Pedidos");
-            System.out.println("4. Conexión de prueba con BBDD");
-            System.out.println("5. Salir de la aplicación");
+            System.out.println("4. Salir de la aplicación");
 
             Scanner entrada = new Scanner(System.in);
 
@@ -44,13 +37,12 @@ public class VentanaMenu {
                 case 3:
                     VentanaPedidos.pintarMenu();
                     break;
-                
-                case 5:
+                case 4:
                     salir = true;
                     break;
                 default:
                     break;
-            };
+            }
         }
     }
 }
