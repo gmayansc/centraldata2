@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="430.0" prefWidth="841.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.uoc.centraldata.controlador.fxml.ClientesAnadirControlador">
+   <children>
+      <ImageView fitHeight="430.0" fitWidth="876.0" layoutX="-12.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../../../../Downloads/background-shop.jpg" />
+         </image>
+      </ImageView>
+      <Text layoutX="48.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="AÑADIR CLIENTE" textAlignment="CENTER" wrappingWidth="766.833984375" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="47.166015625" AnchorPane.topAnchor="12.25390625">
+         <font>
+            <Font name="Leelawadee Bold" size="60.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnAnadir" defaultButton="true" layoutX="250.0" layoutY="363.0" mnemonicParsing="false" onAction="#anadirCliente" prefHeight="50.0" prefWidth="166.0" text="AÑADIR" textAlignment="CENTER" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="446.0">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnVolver" defaultButton="true" layoutX="425.0" layoutY="363.0" mnemonicParsing="false" onAction="#volverClientes" prefHeight="50.0" prefWidth="168.0" style="-fx-background-color: #fc9f9f;" text="VOLVER" textAlignment="CENTER" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="425.0" AnchorPane.rightAnchor="271.0">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="254.0" fitWidth="644.0" layoutX="109.0" layoutY="88.0" pickOnBounds="true" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="109.0" AnchorPane.rightAnchor="109.0" AnchorPane.topAnchor="88.0">
+         <image>
+            <Image url="@../../../../../../../../../../../Downloads/paper.jpg" />
+         </image>
+      </ImageView>
+      <Text layoutX="261.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NIF" wrappingWidth="35.8857421875" AnchorPane.leftAnchor="261.0" AnchorPane.rightAnchor="565.1142578125">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtClienteNIF" layoutX="317.0" layoutY="134.0" prefHeight="25.0" prefWidth="274.0" AnchorPane.leftAnchor="317.0" AnchorPane.rightAnchor="271.0" />
+      <Text layoutX="203.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOMBRE" wrappingWidth="93.97412109375" AnchorPane.leftAnchor="203.0" AnchorPane.rightAnchor="565.02587890625">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtClienteNombre" layoutX="317.0" layoutY="170.0" prefHeight="25.0" prefWidth="274.0" AnchorPane.leftAnchor="317.0" AnchorPane.rightAnchor="271.0" />
+      <Text layoutX="185.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DOMICILIO" wrappingWidth="118.0" AnchorPane.leftAnchor="185.0" AnchorPane.rightAnchor="559.0">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtClienteDomicilio" layoutX="317.0" layoutY="204.0" prefHeight="25.0" prefWidth="274.0" AnchorPane.leftAnchor="317.0" AnchorPane.rightAnchor="271.0" />
+      <Text layoutX="232.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EMAIL" wrappingWidth="66.6796875" AnchorPane.leftAnchor="232.0" AnchorPane.rightAnchor="563.3203125">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtClienteEmail" layoutX="317.0" layoutY="237.0" prefHeight="25.0" prefWidth="274.0" promptText="Campo obligatorio" AnchorPane.leftAnchor="317.0" AnchorPane.rightAnchor="271.0" />
+      <Text layoutX="244.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIPO" wrappingWidth="55.6796875" AnchorPane.leftAnchor="244.0" AnchorPane.rightAnchor="562.3203125">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtClienteTipo" layoutX="317.0" layoutY="271.0" prefHeight="25.0" prefWidth="141.0" AnchorPane.leftAnchor="317.0" AnchorPane.rightAnchor="404.0" />
+   </children>
+</AnchorPane>

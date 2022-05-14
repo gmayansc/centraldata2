@@ -76,17 +76,15 @@ public class HibernateArticuloDAO {
         }
     }
 
-    public static void getAllArticulos() {
+    public static List<Articulo> getAllArticulos() {
         EntityManager em = HibernateUtil.getEntityManagerFactory().createEntityManager();
         String strQuery = "SELECT p FROM Articulo p WHERE p.id IS NOT NULL";
 
         TypedQuery<Articulo> tq = em.createQuery(strQuery, Articulo.class);
-        List<Articulo> articulo;
+        List<Articulo> articulos = null;
 
         try {
-            articulo = tq.getResultList();
-
-            articulo.forEach(art -> System.out.println(art.toString()));
+        	articulos = tq.getResultList();
 
         } catch (NoResultException ex) {
             ex.printStackTrace();
@@ -94,6 +92,8 @@ public class HibernateArticuloDAO {
         } finally {
             em.close();
         }
+        
+        return articulos;
     }
     
 

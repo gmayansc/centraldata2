@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="430.0" prefWidth="841.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.uoc.centraldata.controlador.fxml.ClientesControlador">
+   <children>
+      <ImageView fitHeight="430.0" fitWidth="876.0" layoutX="-12.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-12.0" AnchorPane.rightAnchor="0.76922607421875" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../../../../../../../../../../../Downloads/background-shop.jpg" />
+         </image>
+      </ImageView>
+      <Text layoutX="48.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="CLIENTES" textAlignment="CENTER" wrappingWidth="766.833984375" AnchorPane.leftAnchor="47.833984375" AnchorPane.rightAnchor="47.166015625" AnchorPane.topAnchor="12.0">
+         <font>
+            <Font name="Leelawadee Bold" size="60.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnAnadir" defaultButton="true" layoutX="264.0" layoutY="88.0" mnemonicParsing="false" onAction="#anadirCliente" prefHeight="58.0" prefWidth="334.0" text="AÑADIR" textAlignment="CENTER" AnchorPane.leftAnchor="264.0" AnchorPane.rightAnchor="264.0">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnEliminar" defaultButton="true" layoutX="264.0" layoutY="153.0" mnemonicParsing="false" onAction="#eliminarCliente" prefHeight="58.0" prefWidth="334.0" text="ELIMINAR" textAlignment="CENTER" AnchorPane.leftAnchor="264.0" AnchorPane.rightAnchor="264.0">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnMostrar" defaultButton="true" layoutX="264.0" layoutY="218.0" mnemonicParsing="false" onAction="#mostrarClientes" prefHeight="58.0" prefWidth="334.0" text="MOSTRAR" textAlignment="CENTER" AnchorPane.leftAnchor="264.0" AnchorPane.rightAnchor="264.0">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnMostrarEstandard" contentDisplay="CENTER" defaultButton="true" layoutX="265.0" layoutY="284.0" mnemonicParsing="false" onAction="#mostrarEstandard" prefHeight="75.0" prefWidth="158.0" style="-fx-background-color: #fcce6a;" text="MOSTRAR ESTANDAR" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="264.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnMostrarPremium" alignment="CENTER" defaultButton="true" layoutX="440.0" layoutY="284.0" mnemonicParsing="false" onAction="#mostrarPremium" prefHeight="75.0" prefWidth="158.0" style="-fx-background-color: #fcce6a;" text="MOSTRAR PREMIUMS" textAlignment="CENTER" wrapText="true" AnchorPane.rightAnchor="264.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnVolver" defaultButton="true" layoutX="354.0" layoutY="364.0" mnemonicParsing="false" onAction="#volverMenu" prefHeight="41.0" prefWidth="166.0" style="-fx-background-color: #fc9f9f;" text="VOLVER" textAlignment="CENTER" AnchorPane.bottomAnchor="10.0">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

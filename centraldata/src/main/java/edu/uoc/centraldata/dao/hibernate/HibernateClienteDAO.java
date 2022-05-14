@@ -76,37 +76,34 @@ public class HibernateClienteDAO {
         }
     }
 
-    public static void getAllClientes() {
+    public static List<Cliente> getAllClientes() {
         EntityManager em = HibernateUtil.getEntityManagerFactory().createEntityManager();
         String strQuery = "SELECT p FROM Cliente p WHERE p.id IS NOT NULL";
 
         TypedQuery<Cliente> tq = em.createQuery(strQuery, Cliente.class);
-        List<Cliente> clientes;
+        List<Cliente> clientes = null;
 
         try {
             clientes = tq.getResultList();
-
-            clientes.forEach(cli -> System.out.println(cli.toString()));
-
         } catch (NoResultException ex) {
             ex.printStackTrace();
 
         } finally {
             em.close();
         }
+        
+        return clientes;
     }
 
-    public static void getAllEstandard() {
+    public static List<Cliente> getAllEstandard() {
         EntityManager em = HibernateUtil.getEntityManagerFactory().createEntityManager();
         String strQuery = "SELECT p FROM Cliente p WHERE p.tipo IS 'ESTANDARD'";
 
         TypedQuery<Cliente> tq = em.createQuery(strQuery, Cliente.class);
-        List<Cliente> clientes;
+        List<Cliente> clientes = null;
 
         try {
             clientes = tq.getResultList();
-
-            clientes.forEach(cli -> System.out.println(cli.toString()));
 
         } catch (NoResultException ex) {
             ex.printStackTrace();
@@ -114,18 +111,19 @@ public class HibernateClienteDAO {
         } finally {
             em.close();
         }
+        
+        return clientes;
     }
-   public static void getAllPremium() {
+   public static List<Cliente> getAllPremium() {
         EntityManager em = HibernateUtil.getEntityManagerFactory().createEntityManager();
         String strQuery = "SELECT p FROM Cliente p WHERE p.tipo IS 'PREMIUM'";
 
         TypedQuery<Cliente> tq = em.createQuery(strQuery, Cliente.class);
-        List<Cliente> clientes;
+        List<Cliente> clientes = null;
 
         try {
             clientes = tq.getResultList();
 
-            clientes.forEach(cli -> System.out.println(cli.toString()));
 
         } catch (NoResultException ex) {
             ex.printStackTrace();
@@ -133,5 +131,7 @@ public class HibernateClienteDAO {
         } finally {
             em.close();
         }
+        
+        return clientes;
     }
 }

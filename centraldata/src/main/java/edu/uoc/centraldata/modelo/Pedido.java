@@ -19,32 +19,32 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pedido")
-    public int codigo;
+    private int codigo;
     
     
     @JoinColumn(name="id_cliente")
     @OneToOne(fetch = FetchType.LAZY)
-    public Cliente Cliente;
+    private Cliente Cliente;
     
     
     @JoinColumn(name = "articulo_id")
     @OneToOne(fetch = FetchType.LAZY)
-    public Articulo articulo;
+    private Articulo articulo;
     
     @Column(name = "unidades")
-    public int Unidades;
+    private int Unidades;
     
     @Column(name = "fecha")
-    public LocalDate Fecha;
+    private LocalDate Fecha;
     
     @Column(name = "hora")
-    public LocalTime Hora;
+    private LocalTime Hora;
     
     @Column(name = "precio_final")
-    public double precioFinal;
+    private double precioFinal;
     
     @Column(name = "envio")
-    public boolean Envio;
+    private boolean Envio;
 
     public Pedido(Cliente cli, Articulo art, int unidades, LocalDate Fecha, LocalTime Hora) {
         this.Cliente = cli;

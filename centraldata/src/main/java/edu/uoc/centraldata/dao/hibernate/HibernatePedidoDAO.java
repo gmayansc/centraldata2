@@ -78,37 +78,35 @@ public class HibernatePedidoDAO {
     }
 
  
-    public static void getAllPedidos() {
+    public static List<Pedido> getAllPedidos() {
         EntityManager em = HibernateUtil.getEntityManagerFactory().createEntityManager();
         String strQuery = "SELECT p FROM Pedido p WHERE p.id IS NOT NULL";
 
         TypedQuery<Pedido> tq = em.createQuery(strQuery, Pedido.class);
-        List<Pedido> pedidos;
+        List<Pedido> pedidos = null;
 
         try {
             pedidos = tq.getResultList();
 
-            pedidos.forEach(ped -> System.out.println(ped.toString()));
-
+      
         } catch (NoResultException ex) {
             ex.printStackTrace();
 
         } finally {
             em.close();
         }
+        return pedidos;
     }
     
-    public static void getPedidosEnviados(){
+    public static List<Pedido> getPedidosEnviados(){
                 EntityManager em = HibernateUtil.getEntityManagerFactory().createEntityManager();
         String strQuery = "SELECT p FROM Pedido p WHERE p.envio = 1";
 
         TypedQuery<Pedido> tq = em.createQuery(strQuery, Pedido.class);
-        List<Pedido> pedidos;
+        List<Pedido> pedidos = null;
 
         try {
             pedidos = tq.getResultList();
-
-            pedidos.forEach(ped -> System.out.println(ped.toString()));
 
         } catch (NoResultException ex) {
             ex.printStackTrace();
@@ -116,25 +114,24 @@ public class HibernatePedidoDAO {
         } finally {
             em.close();
         }
+        return pedidos;
     }
     
-    public static void getPedidosPendientes(){
+    public static List<Pedido> getPedidosPendientes(){
                 EntityManager em = HibernateUtil.getEntityManagerFactory().createEntityManager();
         String strQuery = "SELECT p FROM Pedido p WHERE p.envio = 0";
 
         TypedQuery<Pedido> tq = em.createQuery(strQuery, Pedido.class);
-        List<Pedido> pedidos;
+        List<Pedido> pedidos = null;
 
         try {
             pedidos = tq.getResultList();
-
-            pedidos.forEach(ped -> System.out.println(ped.toString()));
-
         } catch (NoResultException ex) {
             ex.printStackTrace();
 
         } finally {
             em.close();
         }
+        return pedidos;
     }
 }
