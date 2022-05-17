@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 public class Conector {
     public static final String URL = "jdbc:mysql://localhost:3306/sys";
     public static final String USER = "root";
-    public static final String CLAVE = "yzVe3729mt@";
+    public static final String CLAVE = "prueba";
     
 public Connection getConexion(){
         Connection con = null;
